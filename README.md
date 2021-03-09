@@ -5,7 +5,7 @@ Repositorio de Sistemas Operativos 1
 Integrantes de desarrollo
 | Nombre | Carnet | Correo |
 |:--------------|:-------------:|:--------------:|
-| Selvin Aragón | 201701133 | selvin.lisandro@gmail.com |
+| Selvin Lisandro Aragón Pérez | 201701133 | selvin.lisandro@gmail.com |
 
 ## Tabla de Prácticas y Proyectos
 1. Proyecto 1
