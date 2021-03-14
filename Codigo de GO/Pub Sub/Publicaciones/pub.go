@@ -10,7 +10,6 @@ import (
 	"os"
 
 	"cloud.google.com/go/pubsub"
-	// Leer variables de entorno
 )
 
 func publish(msg string) error {
@@ -30,7 +29,7 @@ func publish(msg string) error {
 	}
 
 	t := client.Topic(topicID)
-	result := t.Publish(ctx, &pubsub.Message{Data: []byte("codigo")})
+	result := t.Publish(ctx, &pubsub.Message{Data: []byte(msg)})
 
 	id, err := result.Get(ctx)
 

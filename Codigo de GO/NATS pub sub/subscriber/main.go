@@ -3,12 +3,12 @@ package main
 import (
 	"flag"
 	"log"
-	"runtime"
 	"net/http"
+	"runtime"
 	"strings"
+
 	"github.com/nats-io/nats.go"
 )
-
 
 func printMsg(m *nats.Msg, i int) {
 	log.Printf("[#%d] Received on [%s]: '%s'", i, m.Subject, string(m.Data))
@@ -48,19 +48,17 @@ func main() {
 	runtime.Goexit()
 }
 
-func sendpost(value string){
-	val := strings.Split(value,"}")[0]
-    	var sb strings.Builder
-    	sb.WriteString(string(val))
-    	sb.WriteString(", 'tipo':'NATS'}")
-    	
+func sendpost(value string) {
+	val := strings.Split(value, "}")[0]
+	var sb strings.Builder
+	sb.WriteString(string(val))
+	sb.WriteString(", \"tipo\":\"NATS\" }")
+
 	requestBody := strings.NewReader(sb.String())
-	_,err := http.Post("http://34.69.197.57:3000/","application/json; charset=UTF-8",requestBody)
-	if err!=nil {
-	   log.Printf("Enviado");
-	}else{
-	   log.Printf("NO Enviado");
+	_, err := http.Post("http://34.69.197.57:3000/", "application/json; charset=UTF-8", requestBody)
+	if err != nil {
+		log.Printf("Enviado")
+	} else {
+		log.Printf("NO Enviado")
 	}
 }
-
-
