@@ -1,0 +1,26 @@
+version: '3'
+services:
+  publisher:
+    container_name: "publisher"
+    image: randycan/nats-go-pub
+    ports:
+      - 3000:3000
+    networks:
+      - "red_nat" 
+  suscriber:
+    container_name: "suscriber"
+    image: randycan/nats-go-sub
+    ports:
+      - 3001:3000
+    networks:
+      - "red_nat" 
+  nats:
+    container_name: "natsserver"
+    image: "nats:latest"
+    ports:
+      - "4222:4222"
+    networks: 
+      - "red_nat"
+networks:
+  red_nat:
+    driver: "bridge"

@@ -6,6 +6,7 @@ Integrantes de desarrollo
 | Nombre | Carnet | Correo |
 |:--------------|:-------------:|:--------------:|
 | Selvin Lisandro Aragón Pérez | 201701133 | selvin.lisandro@gmail.com |
+| Randy Alexander Can Ajuchan  | 201801527 | canalex210@gmail.com      |
 
 ## Tabla de Prácticas y Proyectos
 1. Proyecto 1
