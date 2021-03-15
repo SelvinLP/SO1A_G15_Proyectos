@@ -1,0 +1,19 @@
+version: '3'
+services:
+  publisher:
+    container_name: "publisher"
+    build: ./Publicaciones
+    ports:
+      - 3000:3000
+    networks:
+      - rd_pubsub
+      
+  subscriber:
+    container_name: "subscriber"
+    build: ./Suscriptores
+    networks:
+      - rd_pubsub
+
+networks:
+  rd_pubsub:
+    driver: "bridge"
