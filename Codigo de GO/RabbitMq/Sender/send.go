@@ -28,6 +28,7 @@ func newElement(w http.ResponseWriter, r *http.Request) {
 	var body map[string]interface{}
 	err := json.NewDecoder(r.Body).Decode(&body)
 	failOnError(err, "Parsing JSON")
+	body["tipo"] = "RabbitMQ"
 	data, err := json.Marshal(body)
 
 	// conección al servidor
