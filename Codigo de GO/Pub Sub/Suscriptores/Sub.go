@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"sync"
 
 	"cloud.google.com/go/pubsub"
 )
@@ -26,19 +25,10 @@ func pullMsgs() error {
 	}
 
 	// Consume 10000 messages.
-	var mu sync.Mutex
-	received := 0
 	sub := client.Subscription(subID)
-	cctx, cancel := context.WithCancel(ctx)
-	err = sub.Receive(cctx, func(ctx context.Context, msg *pubsub.Message) {
-		mu.Lock()
-		defer mu.Unlock()
+	err = sub.Receive(ctx, func(ctx context.Context, msg *pubsub.Message) {
 		sendpost(string(msg.Data))
 		msg.Ack()
-		received++
-		if received == 10000 {
-			cancel()
-		}
 	})
 	if err != nil {
 		return fmt.Errorf("Receive: %v", err)
@@ -62,7 +52,6 @@ func sendpost(value string) {
 	_, err := http.Post("http://35.193.161.136:3000", "application/json; charset=UTF-8", requestBody)
 	if err != nil {
 		log.Printf("Enviado Correctamente")
-		print(sb.String())
 	} else {
 		log.Printf("NO Enviado")
 	}
