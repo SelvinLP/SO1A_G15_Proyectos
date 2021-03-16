@@ -59,7 +59,7 @@ func sendpost(value string) {
 	sb.WriteString(", \"tipo\":\"Pub Sub\" }")
 
 	requestBody := strings.NewReader(sb.String())
-	_, err := http.Post("http://34.69.197.57:3000/", "application/json; charset=UTF-8", requestBody)
+	_, err := http.Post("http://35.193.161.136:3000", "application/json; charset=UTF-8", requestBody)
 	if err != nil {
 		log.Printf("Enviado Correctamente")
 		print(sb.String())
