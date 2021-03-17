@@ -61,7 +61,7 @@ func newElement(w http.ResponseWriter, r *http.Request) {
 func handleRequests() {
 	println("Servidor cliente levantado en el puerto 3000")
 	http.HandleFunc("/", newElement)
-	log.Fatal(http.ListenAndServe("localhost:3000", nil))
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
 func main() {
