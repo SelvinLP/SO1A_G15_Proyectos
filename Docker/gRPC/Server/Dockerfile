@@ -1,11 +1,9 @@
-FROM golang
+FROM golang:1.14
 
-WORKDIR /
-
+WORKDIR /go/src/app
 COPY . .
 
-RUN go mod download
+RUN go get -d -v ./...
+RUN go install -v ./...
 
-EXPOSE 9000
-
-CMD ["go", "run", "main.go"]
+CMD ["go","run","main.go"]
