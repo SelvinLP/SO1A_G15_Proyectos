@@ -52,7 +52,7 @@ func main() {
 			log.Printf("Mensaje recibido: %s", d.Body)
 
 			postBody := []byte(string(d.Body))
-			req, err := http.Post("http://localhost:5000", "application/json", bytes.NewBuffer(postBody))
+			req, err := http.Post("http://35.193.161.136:3000", "application/json", bytes.NewBuffer(postBody))
 			req.Header.Set("Content-Type", "application/json")
 			failOnError(err, "Error en el post")
 			defer req.Body.Close()

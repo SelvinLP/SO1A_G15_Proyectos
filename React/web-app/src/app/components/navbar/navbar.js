@@ -20,6 +20,7 @@ import { faBomb, faUserInjured, faHome, faLungsVirus, faViruses, faHeadSideMask,
          faSyncAlt, faPercent, faBinoculars } from "@fortawesome/free-solid-svg-icons";
 
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import DataHome from '../home/home';
 
 const drawerWidth = 240;
 
@@ -207,7 +208,7 @@ export default function MiniDrawer() {
           <div className={classes.toolbar} />
             <Switch>
             <Route exact path="/">
-              Home
+              <DataHome />
             </Route>
             <Route exact path="/page0">
               Pagina 0
