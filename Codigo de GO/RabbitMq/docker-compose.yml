@@ -1,21 +1,21 @@
 version: '3'
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   sender:
     container_name: "sender"
     build: ./Sender
     ports:
-      - 3000:3000
-    networks:
-      - rd_rabbit
+      - "80:3000"
+    depends_on: 
+      - rabbitmq
       
   receiver:
     container_name: "receiver"
     build: ./Receiver
-    ports: 
-      - 5672:5672
-    networks:
-      - rd_rabbit
-
-networks:
-  rd_rabbit:
-    driver: "bridge"
+    restart: on-failure
+    depends_on: 
+      - rabbitmq
