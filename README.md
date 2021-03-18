@@ -9,6 +9,7 @@ Integrantes de desarrollo
 | Randy Alexander Can Ajuchan  | 201801527 | canalex210@gmail.com           |
 | Luis Pedro Pineda Gonzalez   | 201700995 | luispinedagonzalez33@gmail.com |
 | Cristian Manasés Juárez Juárez | 201700529 | manases.juarez98@gmail.com |
+=======
 
 ## Tabla de Prácticas y Proyectos
 1. Proyecto 1
