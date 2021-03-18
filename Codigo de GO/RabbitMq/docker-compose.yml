@@ -9,7 +9,7 @@ services:
     container_name: "sender"
     build: ./Sender
     ports:
-      - "80:3000"
+      - "3000:3000"
     depends_on: 
       - rabbitmq
       
