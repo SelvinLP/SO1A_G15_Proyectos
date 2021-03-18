@@ -16,7 +16,7 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	conn, err := amqp.Dial("amqp://guest:guest@rabbitmq:5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
@@ -52,10 +52,11 @@ func main() {
 			log.Printf("Mensaje recibido: %s", d.Body)
 
 			postBody := []byte(string(d.Body))
-			req, err := http.Post("http://localhost:5000", "application/json", bytes.NewBuffer(postBody))
+			req, err := http.Post("http://35.193.161.136:3000", "application/json", bytes.NewBuffer(postBody))
 			req.Header.Set("Content-Type", "application/json")
 			failOnError(err, "Error en el post")
 			defer req.Body.Close()
+			log.Printf("todo ok")
 
 			// Read the respones Body
 			newBody, err := ioutil.ReadAll(req.Body)

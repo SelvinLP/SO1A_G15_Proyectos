@@ -1,0 +1,21 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  sender:
+    container_name: "sender"
+    build: ./Sender
+    ports:
+      - "80:3000"
+    depends_on: 
+      - rabbitmq
+      
+  receiver:
+    container_name: "receiver"
+    build: ./Receiver
+    restart: on-failure
+    depends_on: 
+      - rabbitmq
