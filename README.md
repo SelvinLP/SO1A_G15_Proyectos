@@ -8,8 +8,7 @@ Integrantes de desarrollo
 | Selvin Lisandro Aragón Pérez | 201701133 | selvin.lisandro@gmail.com      |
 | Randy Alexander Can Ajuchan  | 201801527 | canalex210@gmail.com           |
 | Luis Pedro Pineda Gonzalez   | 201700995 | luispinedagonzalez33@gmail.com |
-| Cristian Manasés Juárez Juárez | 201700529 | manases.juarez98@gmail.com |
-=======
+| Cristian Manasés Juárez Juárez  | 201700529 | manases.juarez98@gmail.com          |
 
 ## Tabla de Prácticas y Proyectos
 1. Proyecto 1
