@@ -10,7 +10,7 @@ export default class TopDepartament extends Component{
         this.state = {list:[]}
     }
 
-    UNSAFE_componentWillMount(){
+    componentWillMount(){
         getTopDepartaments()
             .then((response)=>{
                 this.setState({list: response.data})

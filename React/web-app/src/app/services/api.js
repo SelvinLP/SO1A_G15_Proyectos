@@ -3,7 +3,7 @@ const axios = require('axios');
 const API_URI = 'http://localhost:5000';
 
 /**
- * @returns genaral dates, example 
+ * @returns genaral dates, example EL ULTIMO DE PRIMERO
   [
        {
             "id": 1,
@@ -35,7 +35,6 @@ export function getRegions(){
 }
 
 /**
- * 
  * @returns 5 register with top of departaments top
 [
     {
@@ -46,4 +45,21 @@ export function getRegions(){
  */
 export function getTopDepartaments(){
     return axios.get(`${API_URI}/topDepartaments`);
+}
+
+/**
+ * @returns only 2 registers symptomatic, asymptomatic
+[
+    {
+        "y": 234,
+        "label": "symptomatic"
+    }
+]
+ */
+export function getStatePatients(){
+    return axios.get(`${API_URI}/statepatients`);
+}
+
+export function getInfectedType(){
+    return axios.get(`${API_URI}/infectedtype`);
 }

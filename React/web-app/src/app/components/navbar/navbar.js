@@ -23,6 +23,9 @@ import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import StartPage from '../start/StartPage';
 import Regions from '../start/regions';
 import TopDepartament from '../top/top';
+import PatientState from '../PatientState/patientstate';
+import InfectedType from '../InfectedType/infectedtype';
+import LastCases from '../lastcases/LastCases'
 
 const drawerWidth = 240;
 
@@ -218,16 +221,16 @@ export default function MiniDrawer() {
               </Route>
               <Route exact path="/page0" >
                 <TopDepartament />
-                Pagina 0
               </Route>
               <Route exact path="/page1">
-                Pagina 1
+                <PatientState />
               </Route>
               <Route exact path="/page2">
-                Pagina 2
+                <InfectedType />
               </Route>
               <Route exact path="/page3">
-                Pagina 3
+                <h1><strong>Ultimos 5 Casos registrados</strong> </h1>
+                <LastCases />
               </Route>
               <Route exact path="/page4">
                 Pagina 4
