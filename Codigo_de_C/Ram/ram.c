@@ -19,33 +19,32 @@ MODULE_VERSION("0.01");
 
 static int my_proc_show(struct seq_file *m, void *v){
     //Memoria en MB
- 	struct sysinfo i;
+    struct sysinfo i;
     si_meminfo(&i);
     long ramLibre = (i.freeram/1024);
     long ramTotal = (i.totalram/1024);
-    long porcentajeLibre = (ramLibre * 100) / ramTotal;
-    seq_printf(m, "%ld,%ld,%ld", ramTotal, ramLibre, porcentajeLibre);
+    seq_printf(m, "%ld,%ld", ramTotal, ramLibre);
     return 0;
 }
 
-static ssize_t my_proc_write(struct file* file, const char __user *buffer, size_t count, loff_t *f_pos){
+static ssize_t my_proc_write(struct file *file, const char __user *buffer, size_t count, loff_t *f_pos){
     return 0;
 }
 
 static int my_proc_open(struct inode *inode, struct file *file){
-        return single_open(file, my_proc_show, NULL);
+    return single_open(file, my_proc_show, NULL);
 }
 
-static struct file_operations my_fops={
-        .owner = THIS_MODULE,
-        .open = my_proc_open,
-        .release = single_release,
-        .read = seq_read,
-        .llseek = seq_lseek,
-        .write = my_proc_write
+static struct file_operations my_fops = {
+    .owner = THIS_MODULE,
+    .open = my_proc_open,
+    .release = single_release,
+    .read = seq_read,
+    .llseek = seq_lseek,
+    .write = my_proc_write
 };
 
-static int __init init(void){
+static int __init init_p(void){
         struct proc_dir_entry *entry;
         entry = proc_create("ram-module", 0777, NULL, &my_fops);
         if(!entry) {
@@ -56,10 +55,10 @@ static int __init init(void){
         return 0;
 }
 
-static void __exit exit(void){
+static void __exit exit_p(void){
         remove_proc_entry("ram-module",NULL);
         printk(KERN_INFO "Final del modulo \n");
 }
 
-module_init(init);
-module_exit(exit);
+module_init(init_p);
+module_exit(exit_p);

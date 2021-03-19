@@ -1,8 +1,9 @@
 const { Router } = require('express');
-const { get_ram } = require('../controller/ram');
+const { get_pol, get_util } = require('../controller/ram');
 const router = Router();
 
 // OBTENER RAM
-router.get('/getram', get_ram);
+router.get('/get_pol', get_pol);
+router.get('/get_util', get_util);
 
 module.exports = router;

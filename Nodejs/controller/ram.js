@@ -1,17 +1,24 @@
 const { Response, Request } = require('express');
-//Encriptadores
-const { v4: uuidv4 } = require('uuid');
-const md5 = require('blueimp-md5');
+const fs = require('fs'); 
 
-const get_ram = (req, res = Response) => {
+const get_pol = (req, res = Response) => {
+    const data_ram = () => (fs.readFileSync('/elements/procs/ram-module', 'utf8')).toString();
+
     res.send({
-        'message': 'get success',
-        'data': "funciona get",
-        'estado': '200'
+        'data': data_ram()
     });
 }
 
+const get_util = (req, res = Response) => {
+    const data_ram = () => (fs.readFileSync('/elements/procs/ram-module', 'utf8')).toString();
+
+    res.send({
+        'uso': data_ram(),
+        'libre': '200'
+    });
+}
 
 module.exports = {
-    get_ram
+    get_pol,
+    get_util
 }
