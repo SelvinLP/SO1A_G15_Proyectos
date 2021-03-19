@@ -34,10 +34,10 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-export default function DataHome() {
+export default function StatePatient() {
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+      <DataGrid rows={rows} columns={columns} />
     </div>
   );
 }
