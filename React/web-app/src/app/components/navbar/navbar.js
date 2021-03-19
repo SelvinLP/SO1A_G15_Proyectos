@@ -22,6 +22,7 @@ import { faBomb, faUserInjured, faHome, faLungsVirus, faViruses, faHeadSideMask,
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import StartPage from '../start/StartPage';
 import Regions from '../start/regions';
+import TopDepartament from '../top/top';
 
 const drawerWidth = 240;
 
@@ -215,7 +216,8 @@ export default function MiniDrawer() {
                 <Divider />
                 <Regions />
               </Route>
-              <Route exact path="/page0">
+              <Route exact path="/page0" >
+                <TopDepartament />
                 Pagina 0
               </Route>
               <Route exact path="/page1">

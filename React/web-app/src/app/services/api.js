@@ -33,3 +33,17 @@ export function getDatos(){
 export function getRegions(){
     return axios.get(`${API_URI}/regions`);
 }
+
+/**
+ * 
+ * @returns 5 register with top of departaments top
+[
+    {
+        "label": "Guatemala",
+        "y": 175,
+    }, ... 5
+]
+ */
+export function getTopDepartaments(){
+    return axios.get(`${API_URI}/topDepartaments`);
+}
