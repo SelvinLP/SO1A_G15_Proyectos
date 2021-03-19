@@ -21,9 +21,10 @@ static int my_proc_show(struct seq_file *m, void *v){
     //Memoria en MB
     struct sysinfo i;
     si_meminfo(&i);
-    long ramLibre = (i.freeram/1024);
-    long ramTotal = (i.totalram/1024);
-    seq_printf(m, "%ld,%ld", ramTotal, ramLibre);
+    int32_t ramLibre = ((i.freeram*i.mem_unit)/(1024*1024));
+    int32_t ramTotal = ((i.totalram*i.mem_unit)/(1024*1024));
+    int32_t ramocupado = ramTotal - ramLibre;
+    seq_printf(m, "{ \"total\": %d , \"ocupado\": %d}", ramTotal, ramocupado);
     return 0;
 }
 
