@@ -29,6 +29,7 @@ import LastCases from '../lastcases/LastCases'
 import AgeRange from '../AgeRange/agerange';
 import Processes from '../Processes/processes';
 import RamPercentaje from '../Ram/percentajedonut';
+import RamPolygon from '../Ram/polygon';
 
 const drawerWidth = 240;
 
@@ -245,7 +246,7 @@ export default function MiniDrawer() {
                 <RamPercentaje />
               </Route>
               <Route exact path="/page7">
-                Pagina 7
+                <RamPolygon />
               </Route>
             </Switch>
         </main> 

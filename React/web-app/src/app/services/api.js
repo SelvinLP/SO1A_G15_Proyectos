@@ -130,3 +130,14 @@ export function getProcesses(){
 export function getRamPercentaje(){
     return axios.get(`${API_URI}/rampercentaje`);
 }
+
+/**
+ * 
+ * @returns 
+ * {
+ *      y: 5
+ * }
+ */
+export function getRamPolygon(){
+    return axios.get(`${API_URI}/rampolygon`);
+}
