@@ -14,7 +14,7 @@ const get_pol = (req, res = Response) => {
 }
 
 const get_util = (req, res = Response) => {
-    const data_ram = fs.readFileSync('/elements/procs/ram-module', 'utf8').toString();
+    const data_ram = fs.readFileSync('/procs/ram-module', 'utf8').toString();
 
     //Data mandar la cantidad libre 
     res.send(

@@ -52,6 +52,11 @@ Ahora, revisamos el documento generado, cada vez que lo revisemos se reescribir√
 ```
 $ cat /proc/[nombre_modulo]
 ```
+
+Para iniciarl el contenedor ingresar el siguiente comando
+
+sudo docker run -dit --name cont_server -v /proc/:/elements/procs/ -p 3000:3000 img_server
+
 ### Eliminar el modulo
 No se espera ninguna salida cuando este comando es exitoso.
 
