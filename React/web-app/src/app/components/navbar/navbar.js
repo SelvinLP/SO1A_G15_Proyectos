@@ -26,6 +26,8 @@ import TopDepartament from '../top/top';
 import PatientState from '../PatientState/patientstate';
 import InfectedType from '../InfectedType/infectedtype';
 import LastCases from '../lastcases/LastCases'
+import AgeRange from '../AgeRange/agerange';
+import Processes from '../Processes/processes';
 
 const drawerWidth = 240;
 
@@ -233,10 +235,10 @@ export default function MiniDrawer() {
                 <LastCases />
               </Route>
               <Route exact path="/page4">
-                Pagina 4
+                <AgeRange />
               </Route>
               <Route exact path="/page5">
-                Pagina 5
+                <Processes />
               </Route>
               <Route exact path="/page6">
                 Pagina 6

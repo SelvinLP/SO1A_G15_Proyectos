@@ -12,7 +12,7 @@ const API_URI = 'http://localhost:5000';
             "age": 4,
             "infectedtype": "non-imported",
             "state": "symptomatic",
-            "way": "RabbitMq"
+            "tipo": "RabbitMq"
         },
   ]
  */
@@ -60,6 +60,55 @@ export function getStatePatients(){
     return axios.get(`${API_URI}/statepatients`);
 }
 
+/**
+ * @returns type of infection
+[
+    {
+        "y": 25, 
+        "label": "non-imported"
+    },
+]
+ */
 export function getInfectedType(){
     return axios.get(`${API_URI}/infectedtype`);
+}
+
+/**
+ * @returns number of patient by age range 
+[
+  {
+    "y": 25,
+    "label": "11 - 20"
+  },
+  {
+    "y": 46,
+    "label": "31 - 40"
+  },
+]
+ */
+export function getAgeRange(){
+    return axios.get(`${API_URI}/agerange`);
+}
+
+/**
+ * 
+ * @returns processes
+[
+  {
+    "pid": "1",
+    "name": "system",
+    "fatherid": "-",
+    "status": "running"
+  },
+  {
+    "pid": "2",
+    "name": "gui",
+    "fatherid": "-",
+    "status": "running"
+  },
+  
+]
+ */
+export function getProcesses(){
+    return axios.get(`${API_URI}/processes`);
 }

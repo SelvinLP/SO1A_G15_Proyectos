@@ -15,7 +15,7 @@ const columns = [
   },
   { field: 'infectedtype', headerName: 'Type of infection', width: 130 },
   { field: 'state', headerName: 'State', width: 130 },
-  { field: 'way', headerName: 'Way', width: 130 },
+  { field: 'tipo', headerName: 'Way', width: 130 },
 ];
 
 export default function StartPage() {
