@@ -17,7 +17,7 @@ const get_util = (req, res = Response) => {
     const data_ram = fs.readFileSync('/elements/procs/ram-module', 'utf8').toString();
 
     //Data mandar la cantidad libre 
-    res.send({
+    res.send(
         [
             {
                 'y': data_ram,
@@ -28,8 +28,7 @@ const get_util = (req, res = Response) => {
                 'label': 'ocupado'
             }
         ]
-        
-    });
+    );
 }
 
 module.exports = {
