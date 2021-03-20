@@ -20,7 +20,16 @@ import { faBomb, faUserInjured, faHome, faLungsVirus, faViruses, faHeadSideMask,
          faSyncAlt, faPercent, faBinoculars } from "@fortawesome/free-solid-svg-icons";
 
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import DataHome from '../home/home';
+import StartPage from '../start/StartPage';
+import Regions from '../start/regions';
+import TopDepartament from '../top/top';
+import PatientState from '../PatientState/patientstate';
+import InfectedType from '../InfectedType/infectedtype';
+import LastCases from '../lastcases/LastCases'
+import AgeRange from '../AgeRange/agerange';
+import Processes from '../Processes/processes';
+import RamPercentaje from '../Ram/percentajedonut';
+import RamPolygon from '../Ram/polygon';
 
 const drawerWidth = 240;
 
@@ -207,36 +216,42 @@ export default function MiniDrawer() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
             <Switch>
-            <Route exact path="/">
-              <DataHome />
-            </Route>
-            <Route exact path="/page0">
-              Pagina 0
-            </Route>
-            <Route exact path="/page1">
-              Pagina 1
-            </Route>
-            <Route exact path="/page2">
-              Pagina 2
-            </Route>
-            <Route exact path="/page3">
-              Pagina 3
-            </Route>
-            <Route exact path="/page4">
-              Pagina 4
-            </Route>
-            <Route exact path="/page5">
-              Pagina 5
-            </Route>
-            <Route exact path="/page6">
-              Pagina 6
-            </Route>
-            <Route exact path="/page7">
-              Pagina 7
-            </Route>
+              <Route exact path="/" >
+                <StartPage />
+                <Divider />
+                <h3>Regiones</h3>
+                <Divider />
+                <Regions />
+              </Route>
+              <Route exact path="/page0" >
+                <TopDepartament />
+              </Route>
+              <Route exact path="/page1">
+                <PatientState />
+              </Route>
+              <Route exact path="/page2">
+                <InfectedType />
+              </Route>
+              <Route exact path="/page3">
+                <h1><strong>Ultimos 5 Casos registrados</strong> </h1>
+                <LastCases />
+              </Route>
+              <Route exact path="/page4">
+                <AgeRange />
+              </Route>
+              <Route exact path="/page5">
+                <Processes />
+              </Route>
+              <Route exact path="/page6">
+                <RamPercentaje />
+              </Route>
+              <Route exact path="/page7">
+                <RamPolygon />
+              </Route>
             </Switch>
         </main> 
       </BrowserRouter>
+      
     </div>
   );
 }
