@@ -112,3 +112,21 @@ export function getAgeRange(){
 export function getProcesses(){
     return axios.get(`${API_URI}/processes`);
 }
+
+/**
+ * 
+ * @returns 
+[
+  {
+    "name": "libre",
+    "y": 75
+  },
+  {
+    "name": "usado",
+    "y": 25
+  }
+]
+ */
+export function getRamPercentaje(){
+    return axios.get(`${API_URI}/rampercentaje`);
+}

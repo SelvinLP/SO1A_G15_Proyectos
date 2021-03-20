@@ -1,7 +1,6 @@
+import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import { getProcesses } from "../../services/api";
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 const columns = [
     {
@@ -15,22 +14,47 @@ const columns = [
     { field: 'status', headerName: 'Status', width: 130 },
 ];
 
-export default function Processes() {
-  const [list, setList] = useState([]);
+export default class Processes extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {list:[]}
+    }
 
-  useEffect(() =>{
-    getProcesses()
-      .then((response)=>{
-        setList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setList]);
+    componentDidMount() {
+        this.timerID = setInterval( () => 
+            this.loaderData(),
+            1000
+        );
+    }
 
-  return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={list} columns={columns} />
-    </div>
-  );
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    loaderData() {      
+        getProcesses()
+            .then((response)=>{
+                this.setState({list: response.data});
+            })
+            .catch((error)=>{
+                console.log("[T_T] Error en els servidor");
+                console.log(error);
+            });
+    }
+
+    render(){
+        if(this.state.list.length > 0){
+            return (
+                <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid rows={this.state.list} columns={columns} />
+                </div>
+            )
+        }else{
+            return (
+                <div>
+                    Cargando datos....
+                </div>
+            )
+        }
+    }
 }

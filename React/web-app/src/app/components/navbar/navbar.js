@@ -28,6 +28,7 @@ import InfectedType from '../InfectedType/infectedtype';
 import LastCases from '../lastcases/LastCases'
 import AgeRange from '../AgeRange/agerange';
 import Processes from '../Processes/processes';
+import RamPercentaje from '../Ram/percentajedonut';
 
 const drawerWidth = 240;
 
@@ -241,7 +242,7 @@ export default function MiniDrawer() {
                 <Processes />
               </Route>
               <Route exact path="/page6">
-                Pagina 6
+                <RamPercentaje />
               </Route>
               <Route exact path="/page7">
                 Pagina 7
