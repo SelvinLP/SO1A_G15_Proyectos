@@ -11,12 +11,6 @@ Revisar módulos instalados, esto listará todos los módulos instalados en el k
 lsmod
 ```
 
-Revisamos o "buscamos" unicamente un módulo
-
-```
-lsmod | grep "[nombre_modulo]"
-```
-
 ### Instalar dependencias
 Descargar headers del módulo específico que tenemos
 
@@ -50,9 +44,23 @@ sudo dmesg
 Ahora, revisamos el documento generado, cada vez que lo revisemos se reescribirá
 
 ```
-$ cat /proc/[nombre_modulo]
+cat /proc/[nombre_modulo]
+```
+
+para construir la imagen 
+
+```
+sudo docker-compose up -d
+```
+
+para levantarlo es 
+
+```
+sudo docker-compose up 
 ```
 ### Eliminar el modulo
 No se espera ninguna salida cuando este comando es exitoso.
 
-$ sudo rmmod "[nombre_modulo]"
+```
+sudo rmmod "[nombre_modulo]"
+```

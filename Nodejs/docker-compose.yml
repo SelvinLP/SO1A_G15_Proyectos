@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+
+  servenode:
+  
+      container_name: "test_serve"
+      build: .
+      ports:
+        - "3000:3000"
+      volumes: 
+          - /proc/:/elements/procs/
