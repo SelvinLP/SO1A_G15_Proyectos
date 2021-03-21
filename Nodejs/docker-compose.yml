@@ -1,6 +1,13 @@
 version: "3.3"
 services:
 
+  mongodb:
+     container_name: "mongodb"
+     image: "mongo:latest"
+     ports:
+        - "27017:27017"
+     networks: 
+       - "red_Node"
   servenode:
   
       container_name: "test_serve"
@@ -9,3 +16,9 @@ services:
         - "3000:3000"
       volumes: 
           - /proc/:/elements/procs/
+      networks: 
+        - "red_Node"
+  
+networks:
+  red_Node:
+    driver: "bridge"
