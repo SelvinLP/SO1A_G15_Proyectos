@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const API_URI = 'http://localhost:5000';
+const API_URI = 'http://35.193.161.136:3000';
 
 /**
  * @returns genaral dates, example EL ULTIMO DE PRIMERO
