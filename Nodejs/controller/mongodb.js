@@ -1,8 +1,4 @@
 const { Response, Request } = require('express');
-//Encriptadores
-const { v4: uuidv4 } = require('uuid');
-const md5 = require('blueimp-md5');
-
 const RegistroModel = require('../Modelosdb/registroModel').Registrodb;
 
 
