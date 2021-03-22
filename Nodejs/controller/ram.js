@@ -8,8 +8,7 @@ const get_pol = (req, res = Response) => {
     //Y = Data en enteros %
     let porc_ocupado = (data_mod.ocupado / data_mod.total) * 100;
     res.send({
-        'y': porc_ocupado,
-        'label': ''
+        'y': porc_ocupado
     });
 }
 
@@ -25,11 +24,11 @@ const get_util = (req, res = Response) => {
         [
             {
                 'y': porc_libre,
-                'label': 'libre'
+                'name': 'libre'
             },
             {
                 'y': porc_ocupado,
-                'label': 'ocupado'
+                'name': 'ocupado'
             }
         ]
     );

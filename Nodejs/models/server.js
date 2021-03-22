@@ -8,7 +8,7 @@ class Server {
         this.app = express();
         this.port = 3000;
         this.mongodb = '';
-        this.ram = '/ram'
+        this.ram = ''
 
         var corsOptions = {
             origin: true,

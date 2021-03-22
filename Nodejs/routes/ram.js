@@ -3,7 +3,7 @@ const { get_pol, get_util } = require('../controller/ram');
 const router = Router();
 
 // OBTENER RAM
-router.get('/get_pol', get_pol);
-router.get('/get_util', get_util);
+router.get('/rampolygon', get_pol);
+router.get('/rampercentaje', get_util);
 
 module.exports = router;
