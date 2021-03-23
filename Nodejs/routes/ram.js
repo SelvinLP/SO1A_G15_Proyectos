@@ -6,4 +6,5 @@ const router = Router();
 router.get('/rampolygon', get_pol);
 router.get('/rampercentaje', get_util);
 
+
 module.exports = router;
