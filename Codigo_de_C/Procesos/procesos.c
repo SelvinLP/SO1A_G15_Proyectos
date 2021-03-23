@@ -52,7 +52,7 @@ static struct file_operations my_fops = {
 
 static int __init init_p(void){
         struct proc_dir_entry *entry;
-        entry = proc_create("proceso-module", 0777, NULL, &my_fops);
+        entry = proc_create("procv-module", 0777, NULL, &my_fops);
         if(!entry) {
                 return -1;
         } else {
@@ -62,7 +62,7 @@ static int __init init_p(void){
 }
 
 static void __exit exit_p(void){
-        remove_proc_entry("proceso-module",NULL);
+        remove_proc_entry("procv-module",NULL);
         printk(KERN_INFO "Final del modulo \n");
 }
 

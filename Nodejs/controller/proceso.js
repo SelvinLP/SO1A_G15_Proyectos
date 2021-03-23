@@ -2,7 +2,7 @@ const { Response, Request } = require('express');
 const fs = require('fs'); 
 
 const get_proc = (req, res = Response) => {
-    const data_proc = fs.readFileSync('/elements/procs/proceso-module', 'utf8').toString();
+    const data_proc = fs.readFileSync('/elements/procs/procv-module', 'utf8').toString();
    
     let array_datos = [];
     let campo_tem = "";
