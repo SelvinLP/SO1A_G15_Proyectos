@@ -28,8 +28,7 @@ struct task_struct *task;
 static int my_proc_show(struct seq_file *m, void *v){
     //Procesos
     for_each_process(task){
-        seq_printf(m, "{ \"pid\": %d , \"name\": %s , \"state\": %ld}",  task->pid, task->comm, task->state);
-	    //seq_printf(f,"pid: %d | name: %s | state: %ld\n", task->pid, task->comm, task->state);
+        seq_printf(m, "{ \"pid\": %d , \"name\": %s , \"status\": %ld, \"fatherid\":\"0\"}",  task->pid, task->comm, task->state);
   	}
     return 0;
 }
