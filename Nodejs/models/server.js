@@ -8,6 +8,8 @@ class Server {
         this.app = express();
         this.port = 3000;
         this.mongodb = '';
+        this.ram = ''
+        this.procesos = '';
 
         var corsOptions = {
             origin: true,
@@ -29,6 +31,8 @@ class Server {
 
     routes(){
         this.app.use(this.mongodb, require('../routes/mongodb'));
+        this.app.use(this.ram, require('../routes/ram'));
+        this.app.use(this.ram, require('../routes/procesos'));
     }
 
     listen(){

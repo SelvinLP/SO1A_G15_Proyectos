@@ -1,0 +1,1 @@
+cmd_/home/selvin/Documentos/SIstemas_Operativos1/SO1A_G15_Proyecto1/Codigo_de_C/Ram/built-in.a := rm -f /home/selvin/Documentos/SIstemas_Operativos1/SO1A_G15_Proyecto1/Codigo_de_C/Ram/built-in.a; ar cDPrST /home/selvin/Documentos/SIstemas_Operativos1/SO1A_G15_Proyecto1/Codigo_de_C/Ram/built-in.a 
