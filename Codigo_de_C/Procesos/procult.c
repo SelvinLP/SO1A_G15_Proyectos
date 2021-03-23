@@ -28,7 +28,7 @@ struct task_struct *task;
 static int my_proc_show(struct seq_file *m, void *v){
     //Procesos
     for_each_process(task){
-        seq_printf(m, "{ \"pid\": %d , \"name\": %s , \"status\": %ld, \"fatherid\":\"0\"}",  task->pid, task->comm, task->state);
+        seq_printf(m, "{ \"pid\": \"%d\" , \"name\": \"%s\" , \"status\": \"%ld\", \"fatherid\":\"0\"}",  task->pid, task->comm, task->state);
   	}
     return 0;
 }
@@ -52,7 +52,7 @@ static struct file_operations my_fops = {
 
 static int __init init_p(void){
         struct proc_dir_entry *entry;
-        entry = proc_create("procv-module", 0777, NULL, &my_fops);
+        entry = proc_create("proculti-module", 0777, NULL, &my_fops);
         if(!entry) {
                 return -1;
         } else {
@@ -62,7 +62,7 @@ static int __init init_p(void){
 }
 
 static void __exit exit_p(void){
-        remove_proc_entry("procv-module",NULL);
+        remove_proc_entry("proculti-module",NULL);
         printk(KERN_INFO "Final del modulo \n");
 }
 
