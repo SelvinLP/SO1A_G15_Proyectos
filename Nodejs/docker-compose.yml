@@ -7,7 +7,7 @@ services:
      ports:
         - "27017:27017"
      networks: 
-       - "red_Node"
+       - "networkapi"
   servenode:
   
       container_name: "test_serve"
@@ -17,8 +17,8 @@ services:
       volumes: 
           - /proc/:/elements/procs/
       networks: 
-        - "red_Node"
+        - "networkapi"
   
 networks:
-  red_Node:
+  networkapi:
     driver: "bridge"

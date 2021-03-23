@@ -35,9 +35,14 @@ const servicios = async (req = Request, res = Response) => {
 }
 
 const GetRegistro = async (req = Request, res = Response) =>{
-    const Registro = await RegistroModel.find()
+	const Registro = await RegistroModel.find().sort( { "id": -1 } )
     console.log(Registro)
     res.send(Registro);
+}
+
+const DeleteAnyRegistros = async (req = Request, res = Response) =>{
+	const Delete = await RegistroModel.deleteMany()
+	res.send({message:"Usuarios Eliminados"});
 }
 
 const GetRegiones = async (req = Request, res = Response) =>{
@@ -255,5 +260,6 @@ module.exports = {
     GetDepartamentos,
     GetStatePatients,
     GetInfectedType,
-    getAgeRange
+    getAgeRange,
+	DeleteAnyRegistros
 }
