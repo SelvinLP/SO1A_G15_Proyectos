@@ -120,6 +120,9 @@ const GetStatePatients = async (req = Request, res = Response)=>{
     	arrRet.push({label:Registro[i]._id.label,y:Registro[i].y});
     }
     console.log(arrRet);
+    let total = arrRet[0].y + arrRet[1].y;
+    arrRet[0].y = (arrRet[0].y/total)*100;
+    arrRet[1].y = (arrRet[1].y/total)*100;
     res.send(arrRet);
 }
 const GetInfectedType = async (req = Request, res = Response)=>{
@@ -135,8 +138,13 @@ const GetInfectedType = async (req = Request, res = Response)=>{
     ]
     const Registro = await RegistroModel.aggregate(agg)
     let arrRet = []
+    let total = 0;
     for(let i=0;i<Registro.length;i++){
     	arrRet.push({label:Registro[i]._id.label,y:Registro[i].y});
+        total += Registro[i].y;
+    }
+    for(let x=0;x<Registro.length;x++){
+        arrRet[x].y = (arrRet[x].y / total)*100;
     }
     console.log(arrRet);
     res.send(arrRet);
