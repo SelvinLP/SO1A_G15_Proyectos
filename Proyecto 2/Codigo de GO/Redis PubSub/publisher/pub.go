@@ -7,22 +7,44 @@ import (
 	"encoding/json"
 	"fmt" // Imprimir en consola
 	"log"
+	"math/rand"
 	"net/http" // El paquete HTTP
 	"os"
+	"strconv"
 
 	"cloud.google.com/go/pubsub"
+	"github.com/garyburd/redigo/redis"
 )
 
 func publish(msg string) error {
-
+	//PUB SUB
 	projectID := "proyecto2sopes-311923"
 	topicID := "mensaje_so1"
 	os.Setenv("GOOGLE_APPLICATION_CREDENTIALS", "llave.json")
 	ctx := context.Background()
 
-	//Creacion del cliente
-	client, err := pubsub.NewClient(ctx, projectID)
+	//REDIS
+	conn, err := redis.Dial("tcp",
+		"redis-19848.c259.us-central1-2.gce.cloud.redislabs.com:19848",
+		redis.DialPassword("4h0Ksf0Yfskpt5ZNzR7bd8Vc8OuKgBXs"))
 
+	//PARTE DE REDIS
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer conn.Close()
+	//Generar key
+	var llave_redis = rand.Intn(30)
+	var keyredis = strconv.Itoa(llave_redis)
+	if _, err = conn.Do("SET", keyredis, msg); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Envio Correcto a Redis con id: %v", llave_redis)
+
+	//Creacion del cliente pub sub
+	client, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		fmt.Println("Error al crear el cliente")
 		fmt.Println("pubsub.NewClient: %v", err)
@@ -30,17 +52,15 @@ func publish(msg string) error {
 	}
 
 	t := client.Topic(topicID)
-	result := t.Publish(ctx, &pubsub.Message{Data: []byte(msg)})
-
+	result := t.Publish(ctx, &pubsub.Message{Data: []byte(keyredis)})
 	id, err := result.Get(ctx)
-
 	if err != nil {
 		fmt.Println("Error al mandar el mensaje")
 		fmt.Println(err)
 		return err
 	}
+	fmt.Println("Published a message Pub sub; msg ID: %v\n", id)
 
-	fmt.Println("Published a message; msg ID: %v\n", id)
 	return nil
 }
 

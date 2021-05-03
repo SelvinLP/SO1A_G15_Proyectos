@@ -9,9 +9,11 @@ import (
 	"strings"
 
 	"cloud.google.com/go/pubsub"
+	"github.com/garyburd/redigo/redis"
 )
 
 func pullMsgs() error {
+	//PUB SUB
 	projectID := "proyecto2sopes-311923"
 	subID := "suscriptor_so1"
 	os.Setenv("GOOGLE_APPLICATION_CREDENTIALS", "llave.json")
@@ -24,9 +26,23 @@ func pullMsgs() error {
 		return err
 	}
 
+	//REDIS
+	conn, err := redis.Dial("tcp",
+		"redis-19848.c259.us-central1-2.gce.cloud.redislabs.com:19848",
+		redis.DialPassword("4h0Ksf0Yfskpt5ZNzR7bd8Vc8OuKgBXs"))
+
 	// Consume 10000 messages.
 	sub := client.Subscription(subID)
 	err = sub.Receive(ctx, func(ctx context.Context, msg *pubsub.Message) {
+		//Obtener de redis
+		str, err1 := redis.String(conn.Do("GET", string(msg.Data)))
+		if err1 != nil {
+			log.Fatal(err1)
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(str)
 		sendpost(string(msg.Data))
 		msg.Ack()
 	})
@@ -44,6 +60,7 @@ func main() {
 
 func sendpost(value string) {
 	val := strings.Split(value, "}")[0]
+	//fmt.Println(val)
 	var sb strings.Builder
 	sb.WriteString(string(val))
 	sb.WriteString(", \"tipo\":\"Pub Sub\" }")
