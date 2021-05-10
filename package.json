@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "webpack-bundle-analyzer": "^4.4.1"
+  }
+}
