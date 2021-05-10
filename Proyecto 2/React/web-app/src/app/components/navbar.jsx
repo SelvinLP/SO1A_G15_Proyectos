@@ -19,9 +19,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBomb, faUserInjured, faHome, faLungsVirus, faViruses, faHeadSideMask,
          faSyncAlt, faPercent, faBinoculars } from "@fortawesome/free-solid-svg-icons";
 
+import ReactTooltip from "react-tooltip";
+
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
-
+import MapChart from './MapChart/MapChart';
 
 const drawerWidth = 240;
 
@@ -125,6 +127,7 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [content, setContent] = React.useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -187,7 +190,7 @@ export default function MiniDrawer() {
                 <ListItemText primary="Home" />
               </ListItem>
             </Link> 
-            {['Top 5', 'Estado del paciente', 'Tipo de infección', 'Nuevos Casos', 'Pacientes por edad'].map((text, index) => (
+            {['MongoDB', 'Top Vacunados', 'Vacunados por País', 'Generos', 'Ultimos 5 Vacunados'].map((text, index) => (
               <Link className={classes.link} to={"page"+index}>
                 <ListItem button key={text}>
                   <ListItemIcon><SwithcCase value={index + 1} /></ListItemIcon>
@@ -198,7 +201,7 @@ export default function MiniDrawer() {
           </List>
           <Divider />
           <List>
-            {['Procesos', 'Porcentaje RAM', 'Utilización de RAM'].map((text, index) => (
+            {['Edades', 'Mapa interactivo', 'Utilización de RAM'].map((text, index) => (
               <Link className={classes.link} to={"page"+(index+5)}>
                 <ListItem button key={text}>
                   <ListItemIcon><SwithcCase value={index + 6} /></ListItemIcon>
@@ -212,10 +215,10 @@ export default function MiniDrawer() {
           <div className={classes.toolbar} />
             <Switch>
               <Route exact path="/" >
-                Pagina inicial
-                <Divider />
-                <h3>Regiones</h3>
-                <Divider />
+                <div>
+                    <MapChart setTooltipContent={setContent} />
+                    <ReactTooltip>{content}</ReactTooltip>    
+                </div>
               </Route>
               <Route exact path="/page0" >  
                 parte 1
