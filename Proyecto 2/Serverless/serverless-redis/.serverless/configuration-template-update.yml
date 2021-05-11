@@ -1,0 +1,19 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-serverless-redis-dev-1620768406371
+    properties:
+      location: us-central1
+  - type: gcp-types/cloudfunctions-v1:projects.locations.functions
+    name: serverless-redis-dev-first
+    properties:
+      parent: projects/proyecto2sopes-311923/locations/us-central1
+      availableMemoryMb: 256
+      runtime: nodejs10
+      timeout: 60s
+      entryPoint: http
+      function: serverless-redis-dev-first
+      sourceArchiveUrl: >-
+        gs://sls-serverless-redis-dev-1620768406371/serverless/serverless-redis/dev/1620771260730-2021-05-11T22:14:20.730Z/serverless-redis.zip
+      labels: {}
+      httpsTrigger:
+        url: path
