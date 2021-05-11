@@ -16,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBomb, faUserInjured, faHome, faLungsVirus, faViruses, faHeadSideMask,
+import { faDatabase, faUserInjured, faHome, faLungsVirus, faViruses, faHeadSideMask,
          faSyncAlt, faPercent, faBinoculars } from "@fortawesome/free-solid-svg-icons";
 
 import ReactTooltip from "react-tooltip";
@@ -24,6 +24,7 @@ import ReactTooltip from "react-tooltip";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
 import MapChart from './MapChart/MapChart';
+import DataBaseMongo from './DataBase/DataBase';
 
 const drawerWidth = 240;
 
@@ -103,9 +104,9 @@ const useStyles = makeStyles((theme) => ({
 function SwithcCase(props){
   switch(props.value) {
     case 0:
-      return <FontAwesomeIcon icon={faHome} style={{ color: 'red' }} size="2x" />;
+      return <FontAwesomeIcon icon={faHome} style={{ color: '#1f70cd' }} size="2x" />;
     case 1:
-      return <FontAwesomeIcon icon={faBomb} style={{ color: 'red' }} size="2x"/>;
+      return <FontAwesomeIcon icon={faDatabase} style={{ color: '#0861b9' }} size="2x"/>;
     case 2:
       return <FontAwesomeIcon icon={faUserInjured} style={{ color: 'red' }} size="2x" />;
     case 3:
@@ -221,7 +222,9 @@ export default function MiniDrawer() {
                 </div>
               </Route>
               <Route exact path="/page0" >  
-                parte 1
+                <div>
+                    <DataBaseMongo />
+                </div>
               </Route>
               <Route exact path="/page1">
                 part 2
