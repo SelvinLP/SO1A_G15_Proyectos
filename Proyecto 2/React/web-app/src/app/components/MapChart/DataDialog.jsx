@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import CanvasJSReact  from "../../libs/canvasjs.react";
 //import { getDatos } from "../../services/api";
 import { useState } from 'react';
 import { useEffect } from 'react';
+
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const columns = [
   { key: 'id'},
@@ -28,7 +31,12 @@ const list = [
     {"id": 7, "name": "Victor Rodríguez", "location": "Algeria","gender": "male", "age": 12, "vaccine_type": "Sputnik V"},
 ]
 
-export default function DataBaseMongo() {
+const chartPie = [
+  {"y": 234,"label": "female"},
+  {"y": 23,"label": "male"},
+]
+
+export default function DataDialog({typeData}) {
 /*
   const [list, setList] = useState([]);
   useEffect(() =>{
@@ -41,9 +49,43 @@ export default function DataBaseMongo() {
       });
   }, [setList]);
 */
-  return (
-    <div style={{ height: 400, width: '100%', container: {maxHeight: 440, }, }}>
-      <DataGrid rows={list} columns={columns} />
-    </div>
-  );
+const options = {
+  theme: "dark2",
+  animationEnabled: true,
+  exportFileName: "graph",
+  exportEnabled: true,
+  title:{
+      text:" props.title"
+  },
+  data: [{
+      type: "pie",
+      showInLegend: true,
+      legendText: "{label}",
+      toolTipContent: "{label}: <strong>{y}%</strong>",
+      indexLabel: "{y}%",
+      indexLabelPlacement: "inside",
+      dataPoints: chartPie
+  }]
+}
+
+  if(typeData == 0){
+    return (
+      <div style={{ height: 400, width: '100%', container: {maxHeight: 440, }, }}>
+        <DataGrid rows={list} columns={columns} />
+      </div>
+    );
+  }else if(typeData == 2){
+    return (
+      <div>
+        <h1>Hola a ver que pex</h1>
+      </div>
+    )
+  }else if(typeData == 3){
+    return (
+      <div>
+			  <CanvasJSChart options = {options} />
+		  </div>
+    )
+  }
+  
 }
