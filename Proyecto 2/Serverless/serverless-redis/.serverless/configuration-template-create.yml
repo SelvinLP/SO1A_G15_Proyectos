@@ -1,0 +1,5 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-serverless-redis-dev-1620768406371
+    properties:
+      location: us-central1
