@@ -13,7 +13,7 @@ resources:
       entryPoint: http
       function: serverless-redis-dev-first
       sourceArchiveUrl: >-
-        gs://sls-serverless-redis-dev-1620768406371/serverless/serverless-redis/dev/1620771260730-2021-05-11T22:14:20.730Z/serverless-redis.zip
+        gs://sls-serverless-redis-dev-1620768406371/serverless/serverless-redis/dev/1620778116652-2021-05-12T00:08:36.652Z/serverless-redis.zip
       labels: {}
       httpsTrigger:
         url: path
