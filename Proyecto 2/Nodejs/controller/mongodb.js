@@ -15,7 +15,8 @@ const servicios = async (req = Request, res = Response) => {
             location: body.location,
             age: body.age,
             vaccine_type: body.infectedtype,
-	    gender:body.gender
+	    	gender:body.gender,
+	    	tipo: body.tipo
         });  
         console.log("Agregado");
         res.send({
