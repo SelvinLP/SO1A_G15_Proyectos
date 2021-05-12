@@ -4,7 +4,7 @@ import CanvasJSReact  from "../../libs/canvasjs.react";
 //import { getDatos } from "../../services/api";
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import AgeRange from './AgeRange';
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const columns = [
@@ -36,7 +36,7 @@ const chartPie = [
   {"y": 23,"label": "male"},
 ]
 
-export default function DataDialog({typeData}) {
+export default function DataDialog({typeData, country}) {
 /*
   const [list, setList] = useState([]);
   useEffect(() =>{
@@ -49,42 +49,60 @@ export default function DataDialog({typeData}) {
       });
   }, [setList]);
 */
-const options = {
-  theme: "dark2",
-  animationEnabled: true,
-  exportFileName: "graph",
-  exportEnabled: true,
-  title:{
-      text:" props.title"
-  },
-  data: [{
-      type: "pie",
-      showInLegend: true,
-      legendText: "{label}",
-      toolTipContent: "{label}: <strong>{y}%</strong>",
-      indexLabel: "{y}%",
-      indexLabelPlacement: "inside",
-      dataPoints: chartPie
-  }]
-}
+  const options = {
+    theme: "dark2",
+    animationEnabled: true,
+    exportFileName: "graph",
+    exportEnabled: true,
+    title:{
+        text:" props.title"
+    },
+    data: [{
+        type: "pie",
+        showInLegend: true,
+        legendText: "{label}",
+        toolTipContent: "{label}: <strong>{y}%</strong>",
+        indexLabel: "{y}%",
+        indexLabelPlacement: "inside",
+        dataPoints: chartPie
+    }]
+  }
 
-  if(typeData == 0){
+  if(typeData === 0){
     return (
       <div style={{ height: 400, width: '100%', container: {maxHeight: 440, }, }}>
         <DataGrid rows={list} columns={columns} />
       </div>
     );
-  }else if(typeData == 2){
+  }else if(typeData === 2){
     return (
       <div>
-        <h1>Hola a ver que pex</h1>
+        <h1>Consulta de vacunados</h1>
+        <div style={{ height: 400, width: '100%', container: {maxHeight: 440, }, }}>
+        <DataGrid rows={list} columns={columns} />
+      </div>
       </div>
     )
-  }else if(typeData == 3){
+  }else if(typeData === 3){
     return (
       <div>
 			  <CanvasJSChart options = {options} />
 		  </div>
+    )
+  }else if(typeData === 4){
+    return (
+      <div>
+        <h1>Ultimos 5 vacunados</h1>
+        <div style={{ height: 400, width: '100%', container: {maxHeight: 440, }, }}>
+          <DataGrid rows={list} columns={columns} />
+        </div>
+      </div>
+    )
+  }else{
+    return (
+      <div>
+        <AgeRange country={country} />
+      </div>
     )
   }
   

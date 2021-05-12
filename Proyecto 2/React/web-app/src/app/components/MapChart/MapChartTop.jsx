@@ -1,5 +1,4 @@
 import React, { useEffect, useState, } from "react";
-import { scaleLinear } from "d3-scale";
 import {
   ComposableMap,
   Geographies,
@@ -8,32 +7,8 @@ import {
   Graticule,
   ZoomableGroup
 } from "react-simple-maps";
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
 
 import DataCountry from '../../libs/data';
-import DataDialog from './DataDialog';
-
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: 'relative',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
-  },
-}));
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -50,21 +25,9 @@ const rounded = num => {
   }
 }
 
-export default function MapChart({ setTooltipContent, datos, fontColor, tipo }){
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+export default function MapChartTop({ setTooltipContent, datos, tipo }){
   const [data, setData] = useState([]);
-  const [country, setCountry] = useState({});
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleClick = geo => () => {
-    setOpen(true);
-    setCountry(geo);
-  };
-
+  
   useEffect(() => {
     if(datos.length > 0){
       setData(datos);
@@ -91,10 +54,10 @@ export default function MapChart({ setTooltipContent, datos, fontColor, tipo }){
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
-                      fill={d ? d["color"] : fontColor}
+                      fill={d ? d["color"] : '#17a14a'}
                       onMouseEnter={() => {
                         const { NAME } = geo.properties;
-                        setTooltipContent(`${NAME} — ${rounded(d ? d["vacunados"] : 0)}`);
+                        setTooltipContent(`${NAME} — ${rounded(d ? d["vacunados"] : 0 )}`);
                       }}
                       onMouseLeave={() => {
                         setTooltipContent("");
@@ -109,7 +72,6 @@ export default function MapChart({ setTooltipContent, datos, fontColor, tipo }){
                           outline: "none"
                         }
                       }}
-                      onClick={handleClick(geo.properties)}
                     />
                   );
                 })
@@ -118,27 +80,6 @@ export default function MapChart({ setTooltipContent, datos, fontColor, tipo }){
           )}
         </ZoomableGroup>
       </ComposableMap>
-
-      <div>
-        <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-          <AppBar className={classes.appBar}>
-            <Toolbar>
-              <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                <CloseIcon />
-              </IconButton>
-              <Typography variant="h6" className={classes.title}>
-                {country["NAME"]}
-              </Typography>
-              <Button autoFocus color="inherit" onClick={handleClose}>
-                close
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <div>
-            <DataDialog typeData={tipo} country={country} />
-          </div>
-        </Dialog>
-      </div>
     </>
   );
 }

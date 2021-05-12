@@ -5072,7 +5072,7 @@ const DataCountry = [
       "2015": 0.345881029673742,
       "2016": 0.347203267703412,
       "ISO3": "VEN",
-      "Name": "Venezuela, Bolivarian Republic o",
+      "Name": "Venezuela",
       "parameter": 0.347113679585963
     },
     {

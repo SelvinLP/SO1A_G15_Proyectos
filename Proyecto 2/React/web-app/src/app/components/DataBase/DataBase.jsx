@@ -4,6 +4,8 @@ import { DataGrid } from '@material-ui/data-grid';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+import trafficTest from '../../libs/data2';
+
 const columns = [
   { key: 'id'},
   { field: 'name', headerName: 'Name', width: 260 },
@@ -18,17 +20,18 @@ const columns = [
   { field: 'vaccine_type', headerName: 'Vaccine Type', width: 230 },
 ];
 
-const list = [
-    {"id": 1, "name": "Pablo Rodríguez", "location": "Guatemala","gender": "male", "age": 35, "vaccine_type": "Sputnik V"},
-    {"id": 2, "name": "José Rodríguez", "location": "Mexico","gender": "male", "age": 25, "vaccine_type": "Sputnik V"},
-    {"id": 3, "name": "Andres Rodríguez", "location": "Kenya","gender": "male", "age": 31, "vaccine_type": "Sputnik V"},
-    {"id": 4, "name": "Cristian Rodríguez", "location": "Germany","gender": "male", "age": 35, "vaccine_type": "Sputnik V"},
-    {"id": 5, "name": "Rosario Rodríguez", "location": "France","gender": "male", "age": 56, "vaccine_type": "Sputnik V"},
-    {"id": 6, "name": "Antonio Rodríguez", "location": "Spain","gender": "male", "age": 87, "vaccine_type": "Sputnik V"},
-    {"id": 7, "name": "Victor Rodríguez", "location": "Algeria","gender": "male", "age": 12, "vaccine_type": "Sputnik V"},
-]
+let list = [];
+
+function addId(){
+  for (let index = 0; index < trafficTest.length; index++) {
+    trafficTest[index]["id"] = index;
+  }
+  list = trafficTest;
+  console.log(list[0]);
+}
 
 export default function DataBaseMongo() {
+  addId();
 /*
   const [list, setList] = useState([]);
   useEffect(() =>{

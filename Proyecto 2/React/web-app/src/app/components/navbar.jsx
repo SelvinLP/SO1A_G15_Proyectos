@@ -16,14 +16,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDatabase, faMemory, faHome, faLungsVirus, faViruses, faHeadSideMask,
-         faSyncAlt, faPercent, faBinoculars, faUserInjured, faChartPie, faChartBar } from "@fortawesome/free-solid-svg-icons";
-
-import ReactTooltip from "react-tooltip";
+import { faDatabase, faMemory, faHeadSideMask, faBinoculars, 
+         faUserInjured, faChartPie, faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
-import MapChart from './MapChart/MapChart';
 import DataBaseMongo from './DataBase/DataBase';
 import TopTen from './Redis/TopTen';
 import VaccineCountry from './Redis/VaccineCountry';
@@ -126,7 +123,6 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [content, setContent] = React.useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -209,17 +205,16 @@ export default function MiniDrawer() {
                 <TopTen />
               </Route>
               <Route exact path="/page1">
-                <VaccineCountry />
+                <VaccineCountry tipo={2} />
               </Route>
               <Route exact path="/page2">
-                <VaccineCountry />
+                <VaccineCountry tipo={3} />
               </Route>
               <Route exact path="/page3">
-                <h1><strong>Ultimos 5 Casos registrados</strong> </h1>
-                
+                <VaccineCountry tipo={4} />
               </Route>
               <Route exact path="/page4">
-                4
+                <VaccineCountry tipo={5} />
               </Route>
             </Switch>
         </main> 
