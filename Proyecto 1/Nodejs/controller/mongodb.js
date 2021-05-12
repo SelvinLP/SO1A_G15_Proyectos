@@ -6,18 +6,16 @@ const servicios = async (req = Request, res = Response) => {
     let body = req.body;
     //Lo que recibio
 
-    const Registro = await RegistroModel.find()
+    //const Registro = await RegistroModel.find()
 
     try{
         await RegistroModel.create({
-            id: Registro.length,
+            id: 0,
             name: body.name,
             location: body.location,
             age: body.age,
-            infectedtype: body.infectedtype,
-            state: body.state,
-            tipo: body.tipo,
-            region: AsignarRegion(body.location)
+            vaccine_type: body.infectedtype,
+	    gender:body.gender
         });  
         console.log("Agregado");
         res.send({

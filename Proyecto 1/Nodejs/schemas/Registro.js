@@ -8,10 +8,8 @@ const schemas = {
         name: {type: String},
         location: {type: String},
         age: {type: Number},
-        infectedtype: {type: String},
-        state: {type: String},
-        tipo: {type: String},
-        region: {type: String}
+        vaccine_type: {type: String},
+        gender: {type: String}
     })
 
 };
