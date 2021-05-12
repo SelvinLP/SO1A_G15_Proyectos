@@ -6,8 +6,13 @@ port=18733,
 password='sopes12021')
 
 
-r.append('foo','{"valor":4},')
+#r.append('foo','{"name": "Raul Mendoza","location": "Guatemala","gender": "male","age": 35,"vaccine_type": "Sputnik V" },')
 #r.delete('foo')
 res = r.get('foo')
 print(res)
+
+
+
+
+
 
