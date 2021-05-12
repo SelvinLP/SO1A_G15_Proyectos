@@ -6,17 +6,17 @@ const servicios = async (req = Request, res = Response) => {
     let body = req.body;
     //Lo que recibio
 
-    //const Registro = await RegistroModel.find()
+    const Registro = await RegistroModel.find()
 
     try{
         await RegistroModel.create({
-            id: 0,
+            id: Registro.length,
             name: body.name,
             location: body.location,
             age: body.age,
             vaccine_type: body.infectedtype,
-	    	gender:body.gender,
-	    	tipo: body.tipo
+	   gender:body.gender,
+	    tipo: body.tipo
         });  
         console.log("Agregado");
         res.send({
@@ -49,10 +49,11 @@ const GetRegiones = async (req = Request, res = Response) =>{
 
 const GetDepartamentos = async (req = Request, res = Response)=>{
 	//Get 5 ultimos
-    const Registro = await RegistroModel.find().sort({location:-1})
+    const Registro = await RegistroModel.find().distinct('location')
     let arrReturn = []
-    for(let i = 0 ; i<Registro.length; i++){
-    	arrReturn.push({label:Registro[i]._id.label,y:Registro[i].y});
+    for(let i=0; i<Registro.length; i++){
+    	const SubRegistros = await RegistroModel.find().where('location').equals(Registro[i]).sort({id:-1}).limit(5);
+	arrReturn.push(SubRegistros)
     }
     console.log(arrReturn);
     res.send(arrReturn);
