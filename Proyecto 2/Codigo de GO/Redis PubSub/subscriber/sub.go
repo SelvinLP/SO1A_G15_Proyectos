@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"strings"
 
@@ -43,7 +42,7 @@ func pullMsgs() error {
 			log.Fatal(err)
 		}
 		fmt.Println(str)
-		sendpost(string(msg.Data))
+		sendpost(str)
 		msg.Ack()
 	})
 	if err != nil {
@@ -63,13 +62,18 @@ func sendpost(value string) {
 	//fmt.Println(val)
 	var sb strings.Builder
 	sb.WriteString(string(val))
-	sb.WriteString(", \"tipo\":\"Pub Sub\" }")
+	sb.WriteString(", \"tipo\":\"Pub Sub\" },")
 
-	requestBody := strings.NewReader(sb.String())
-	_, err := http.Post("http://35.193.161.136:3000", "application/json; charset=UTF-8", requestBody)
+	//REDIS
+	conn2, err := redis.Dial("tcp",
+		"redis-18733.c1.us-central1-2.gce.cloud.redislabs.com:18733",
+		redis.DialPassword("sopes12021"))
+
+	//PARTE DE REDIS
 	if err != nil {
-		log.Printf("Enviado Correctamente")
-	} else {
-		log.Printf("NO Enviado")
+		log.Fatal(err)
+	}
+	if _, err = conn2.Do("APPEND", "foo", sb.String()); err != nil {
+		log.Fatal(err)
 	}
 }
