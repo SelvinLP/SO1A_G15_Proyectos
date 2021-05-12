@@ -2,7 +2,8 @@
 
 exports.http = (request, response) => {
 
-//--------------------------------------------------
+ 
+   //--------------------------------------------------
 
 
 const redis = require('redis');
@@ -31,10 +32,20 @@ results.forEach(category => {
 
     if (!filteredCategories.find(cat => cat.location == category.location)) {
         const location = category.location ;
+         cont=1;
         filteredCategories.push({location, cont});
-        cont=1;
+       
+        
     }else{
-    cont = cont+1;
+    
+    var i=0;
+    for(i=0;i<filteredCategories.length;i++){
+     if(filteredCategories[i].location==category.location){
+    filteredCategories[i].cont = filteredCategories[i].cont+1
+    i=filteredCategories.length
+    }
+    }
+   
     }
     
 });
@@ -83,7 +94,7 @@ results.forEach(category => {
        console.log(top);
        // console.log(results);
         }catch(error){
-        response.status(200).send([]);      
+       response.status(200).send([]);      
         }
         
     });
@@ -96,5 +107,4 @@ exports.event = (event, callback) => {
   callback();
 };
 
-    
     

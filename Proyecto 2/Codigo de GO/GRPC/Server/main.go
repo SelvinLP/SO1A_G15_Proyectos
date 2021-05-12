@@ -28,14 +28,14 @@ type server struct {
 
 func sendpost(value string) {
 
-	/*datos := strings.NewReader(value)
-	res, err := http.Post("http://35.193.161.136:3000", "application/json", datos)
+	datos := strings.NewReader(value)
+	res, err := http.Post("http://34.72.16.244:3000", "application/json", datos)
 	if err != nil {
 		log.Printf("no enviado a node")
 	} else {
 		defer res.Body.Close()
 	}
-	*/
+	
 	
 	
 	//REDIS

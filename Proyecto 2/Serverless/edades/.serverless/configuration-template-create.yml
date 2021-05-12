@@ -1,0 +1,5 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-edades-dev-1620846759572
+    properties:
+      location: us-central1

@@ -1,19 +1,19 @@
 resources:
   - type: storage.v1.bucket
-    name: sls-vacunadas-dev-1620801774407
+    name: sls-edades-dev-1620846759572
     properties:
       location: us-central1
   - type: gcp-types/cloudfunctions-v1:projects.locations.functions
-    name: vacunadas-dev-vacunadas
+    name: edades-dev-first
     properties:
       parent: projects/proyecto2sopes-311923/locations/us-central1
       availableMemoryMb: 256
       runtime: nodejs10
       timeout: 60s
       entryPoint: http
-      function: vacunadas-dev-vacunadas
+      function: edades-dev-first
       sourceArchiveUrl: >-
-        gs://sls-vacunadas-dev-1620801774407/serverless/vacunadas/dev/1620844614441-2021-05-12T18:36:54.441Z/vacunadas.zip
+        gs://sls-edades-dev-1620846759572/serverless/edades/dev/1620846761724-2021-05-12T19:12:41.724Z/edades.zip
       labels: {}
       httpsTrigger:
         url: path

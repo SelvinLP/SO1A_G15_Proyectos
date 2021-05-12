@@ -35,30 +35,23 @@ results.forEach(category => {
 
     if (!filteredCategories.find(cat => cat.location == category.location)) {
         const location = category.location ;
+        cont = 1;
         filteredCategories.push({location, cont});
-        cont=1;
+         
     }else{
-    cont = cont+1;
+   
+    var i=0;
+    for(i=0;i<filteredCategories.length;i++){
+     if(filteredCategories[i].location==category.location){
+    filteredCategories[i].cont = filteredCategories[i].cont+1
+    i=filteredCategories.length
+    }
+    }
     }
     
 });
 
-   var n, i, k, aux;
-    n = filteredCategories.length;
-  
-    // Algoritmo de burbuja
-    for (k = 1; k < n; k++) {
-        for (i = 0; i < (n - k); i++) {
-            if (filteredCategories[i].cont > filteredCategories[i + 1].cont) {
-                aux = filteredCategories[i];
-                filteredCategories[i] = filteredCategories[i + 1];
-                filteredCategories[i + 1] = aux;
-            }
-        }
-    }
-       
-        
-               
+                 
         
        response.status(200).send(filteredCategories);
        console.log(filteredCategories);
