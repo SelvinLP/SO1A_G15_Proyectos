@@ -1,0 +1,19 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-top-ten-dev-1620800747165
+    properties:
+      location: us-central1
+  - type: gcp-types/cloudfunctions-v1:projects.locations.functions
+    name: top-ten-dev-second
+    properties:
+      parent: projects/proyecto2sopes-311923/locations/us-central1
+      availableMemoryMb: 256
+      runtime: nodejs10
+      timeout: 60s
+      entryPoint: http
+      function: top-ten-dev-second
+      sourceArchiveUrl: >-
+        gs://sls-top-ten-dev-1620800747165/serverless/top-ten/dev/1620800749187-2021-05-12T06:25:49.187Z/top-ten.zip
+      labels: {}
+      httpsTrigger:
+        url: path

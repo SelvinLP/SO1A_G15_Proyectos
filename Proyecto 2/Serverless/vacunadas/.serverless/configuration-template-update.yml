@@ -1,0 +1,19 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-vacunadas-dev-1620801774407
+    properties:
+      location: us-central1
+  - type: gcp-types/cloudfunctions-v1:projects.locations.functions
+    name: vacunadas-dev-vacunadas
+    properties:
+      parent: projects/proyecto2sopes-311923/locations/us-central1
+      availableMemoryMb: 256
+      runtime: nodejs10
+      timeout: 60s
+      entryPoint: http
+      function: vacunadas-dev-vacunadas
+      sourceArchiveUrl: >-
+        gs://sls-vacunadas-dev-1620801774407/serverless/vacunadas/dev/1620801776347-2021-05-12T06:42:56.347Z/vacunadas.zip
+      labels: {}
+      httpsTrigger:
+        url: path

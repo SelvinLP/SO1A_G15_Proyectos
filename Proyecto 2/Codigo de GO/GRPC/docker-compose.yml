@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+
+  grpc-client:
+  
+      container_name: "cliente"
+      networks:
+      - "red_grpc"      
+      build: ./Client
+      ports:
+        - "3000:3000"
+
+  grpc-server:
+      container_name: "servidor"
+      networks:
+      - "red_grpc"
+      build: ./Server
+      
+networks:
+  red_grpc:
+    driver: "bridge"
