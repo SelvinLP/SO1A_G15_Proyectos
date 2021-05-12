@@ -4,8 +4,8 @@ const router = Router();
 
 // RUTA PARA OBTENER DATOS DE MENSAJERIAS (PUBSUB,....)
 router.get('/data', GetRegistro);
-router.get('/last5ingresspais', GetDepartamentos)
-router.get('/genderfrompais', GetInfectedType)
+router.post('/last5ingresspais', GetDepartamentos)
+router.post('/genderfrompais', GetInfectedType)
 router.get('/DeleteAny', DeleteAnyRegistros)
 router.post('/', servicios);
 //PONER AQUI SOLO RUTAS DE MONGODB

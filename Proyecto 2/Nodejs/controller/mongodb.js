@@ -49,14 +49,11 @@ const GetRegiones = async (req = Request, res = Response) =>{
 
 const GetDepartamentos = async (req = Request, res = Response)=>{
 	//Get 5 ultimos
-    const Registro = await RegistroModel.find().distinct('location')
+    let body = req.body;
     let arrReturn = []
-    for(let i=0; i<Registro.length; i++){
-    	const SubRegistros = await RegistroModel.find().where('location').equals(Registro[i]).sort({id:-1}).limit(5);
-	arrReturn.push(SubRegistros)
-    }
-    console.log(arrReturn);
-    res.send(arrReturn);
+    const SubRegistros = await RegistroModel.find().where('location').equals(body.location).sort({id:-1}).limit(5);
+    console.log(SubRegistros);
+    res.send(SubRegistros);
 }
 
 const GetStatePatients = async (req = Request, res = Response)=>{
@@ -72,11 +69,13 @@ const GetInfectedType = async (req = Request, res = Response)=>{
 		}
     }
     ]
+    let body = req.body;
     const Registro = await RegistroModel.aggregate(agg)
     let arrRet = []
-    let total = 0;
     for(let i=0;i<Registro.length;i++){
-    	arrRet.push({genero:Registro[i]._id.genero,pais:Registro[i]._id.pais,cantidad:Registro[i].cantidad});
+    	if(body.location == Registro[i]._id.pais){
+	   arrRet.push({genero:Registro[i]._id.genero,y:Registro[i].cantidad});
+    	}
     }
     res.send(arrRet);
 }
