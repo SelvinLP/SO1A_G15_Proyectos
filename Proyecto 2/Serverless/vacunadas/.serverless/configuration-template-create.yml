@@ -1,0 +1,5 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-vacunadas-dev-1620801774407
+    properties:
+      location: us-central1
