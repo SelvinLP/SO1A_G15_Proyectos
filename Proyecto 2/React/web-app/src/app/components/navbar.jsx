@@ -16,12 +16,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBomb, faUserInjured, faHome, faLungsVirus, faViruses, faHeadSideMask,
-         faSyncAlt, faPercent, faBinoculars } from "@fortawesome/free-solid-svg-icons";
+import { faDatabase, faMemory, faHeadSideMask, faBinoculars, 
+         faUserInjured, faChartPie, faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
-
+import DataBaseMongo from './DataBase/DataBase';
+import TopTen from './Redis/TopTen';
+import VaccineCountry from './Redis/VaccineCountry';
 
 const drawerWidth = 240;
 
@@ -101,30 +103,26 @@ const useStyles = makeStyles((theme) => ({
 function SwithcCase(props){
   switch(props.value) {
     case 0:
-      return <FontAwesomeIcon icon={faHome} style={{ color: 'red' }} size="2x" />;
+      return <FontAwesomeIcon icon={faDatabase} style={{ color: '#ff0fa4' }} size="2x"/>;
     case 1:
-      return <FontAwesomeIcon icon={faBomb} style={{ color: 'red' }} size="2x"/>;
+      return <FontAwesomeIcon icon={faMemory} style={{ color: '#ff7634' }} size="2x" />;
     case 2:
-      return <FontAwesomeIcon icon={faUserInjured} style={{ color: 'red' }} size="2x" />;
+      return <FontAwesomeIcon icon={faUserInjured} style={{ color: '#0d8000' }} size="2x" />;
     case 3:
-      return <FontAwesomeIcon icon={faLungsVirus} style={{ color: 'red' }} size="2x" />;
+      return <FontAwesomeIcon icon={faChartPie} style={{ color: '#84ff99' }} size="2x" />;
     case 4:
-      return <FontAwesomeIcon icon={faViruses} style={{ color: 'red' }} size="2x" />;
+      return <FontAwesomeIcon icon={faHeadSideMask} style={{ color: '#ff2ae6' }} size="2x" />;
     case 5:
-      return <FontAwesomeIcon icon={faHeadSideMask} style={{ color: 'red' }} size="2x" />;
-    case 6:
-      return <FontAwesomeIcon icon={faSyncAlt} style={{ color: '#3498DB' }} size="2x" />;
-    case 7:
-      return <FontAwesomeIcon icon={faPercent} style={{ color: '#3498DB' }} size="2x" />;
+      return <FontAwesomeIcon icon={faChartBar} style={{ color: '#07e7ff' }} size="2x" />;
     default:
-      return <FontAwesomeIcon icon={faBinoculars} style={{ color: '#3498DB' }} size="2x" />;
+      return <FontAwesomeIcon icon={faBinoculars} style={{ color: '#eb5347' }} size="2x" />;
   }
 }
 
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -182,12 +180,12 @@ export default function MiniDrawer() {
           <Divider />
           <List>
             <Link className={classes.link} to="/">
-              <ListItem button key="home">
+              <ListItem button key="Datos">
                 <ListItemIcon><SwithcCase value={0} /></ListItemIcon>
-                <ListItemText primary="Home" />
+                <ListItemText primary="Datos MongoDB" />
               </ListItem>
             </Link> 
-            {['Top 5', 'Estado del paciente', 'Tipo de infección', 'Nuevos Casos', 'Pacientes por edad'].map((text, index) => (
+            {['Top Vacunados', 'Vacunados por País', 'Generos', 'Ultimos 5 Vacunados', 'Edades'].map((text, index) => (
               <Link className={classes.link} to={"page"+index}>
                 <ListItem button key={text}>
                   <ListItemIcon><SwithcCase value={index + 1} /></ListItemIcon>
@@ -196,51 +194,27 @@ export default function MiniDrawer() {
               </Link>  
             ))}
           </List>
-          <Divider />
-          <List>
-            {['Procesos', 'Porcentaje RAM', 'Utilización de RAM'].map((text, index) => (
-              <Link className={classes.link} to={"page"+(index+5)}>
-                <ListItem button key={text}>
-                  <ListItemIcon><SwithcCase value={index + 6} /></ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              </Link> 
-            ))}
-          </List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
             <Switch>
               <Route exact path="/" >
-                Pagina inicial
-                <Divider />
-                <h3>Regiones</h3>
-                <Divider />
+                <DataBaseMongo />
               </Route>
               <Route exact path="/page0" >  
-                parte 1
+                <TopTen />
               </Route>
               <Route exact path="/page1">
-                part 2
+                <VaccineCountry tipo={2} />
               </Route>
               <Route exact path="/page2">
-                2
+                <VaccineCountry tipo={3} />
               </Route>
               <Route exact path="/page3">
-                <h1><strong>Ultimos 5 Casos registrados</strong> </h1>
-                
+                <VaccineCountry tipo={4} />
               </Route>
               <Route exact path="/page4">
-                4
-              </Route>
-              <Route exact path="/page5">
-                5
-              </Route>
-              <Route exact path="/page6">
-                6
-              </Route>
-              <Route exact path="/page7">
-                7
+                <VaccineCountry tipo={5} />
               </Route>
             </Switch>
         </main> 
