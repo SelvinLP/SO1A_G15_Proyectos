@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import CanvasJSReact  from "../../libs/canvasjs.react";
-//import { getDatos } from "../../services/api";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import AgeRange from './AgeRange';
+import { GenerosData, LastFive } from '../../services/mongodb';
+
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const columns = [
@@ -21,7 +22,7 @@ const columns = [
   { field: 'vaccine_type', headerName: 'Vaccine Type', width: 230 },
 ];
 
-const list = [
+/*const list = [
     {"id": 1, "name": "Pablo Rodríguez", "location": "Guatemala","gender": "male", "age": 35, "vaccine_type": "Sputnik V"},
     {"id": 2, "name": "José Rodríguez", "location": "Mexico","gender": "male", "age": 25, "vaccine_type": "Sputnik V"},
     {"id": 3, "name": "Andres Rodríguez", "location": "Kenya","gender": "male", "age": 31, "vaccine_type": "Sputnik V"},
@@ -31,38 +32,55 @@ const list = [
     {"id": 7, "name": "Victor Rodríguez", "location": "Algeria","gender": "male", "age": 12, "vaccine_type": "Sputnik V"},
 ]
 
-const chartPie = [
+/*const chartPie = [
   {"y": 234,"label": "female"},
   {"y": 23,"label": "male"},
-]
+]*/
 
 export default function DataDialog({typeData, country}) {
-/*
   const [list, setList] = useState([]);
+  const [chartPie, setChartPie] = useState([]);
+
   useEffect(() =>{
-    getDatos()
-      .then((response)=>{
-        setList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setList]);
-*/
+    switch (typeData) {
+      case 3:
+        GenerosData(country["NAME_LONG"])
+          .then((res) => {
+            setChartPie(res.data)
+          })
+          .catch((error) => {
+            console.log("Error en el server", error);
+          });
+        break;
+      case 4:
+        LastFive(country["NAME_LONG"])
+          .then((response)=>{
+            setList(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        break;
+      default:
+
+        break;
+    }
+  }, []);
+
   const options = {
     theme: "dark2",
     animationEnabled: true,
     exportFileName: "graph",
     exportEnabled: true,
     title:{
-        text:" props.title"
+        text: "Generos"
     },
     data: [{
         type: "pie",
         showInLegend: true,
-        legendText: "{label}",
-        toolTipContent: "{label}: <strong>{y}%</strong>",
-        indexLabel: "{y}%",
+        legendText: "{genero}",
+        toolTipContent: "{genero}: <strong>{y}</strong>",
+        indexLabel: "{y}",
         indexLabelPlacement: "inside",
         dataPoints: chartPie
     }]
@@ -101,7 +119,7 @@ export default function DataDialog({typeData, country}) {
   }else{
     return (
       <div>
-        <AgeRange country={country} />
+        <AgeRange country={country["NAME_LONG"]} />
       </div>
     )
   }

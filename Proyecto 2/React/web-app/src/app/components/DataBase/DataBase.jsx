@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-//import { getDatos } from "../../services/api";
-import { useState } from 'react';
-import { useEffect } from 'react';
-
-import trafficTest from '../../libs/data2';
+import { datosAlmacenados } from "../../services/mongodb";
 
 const columns = [
   { key: 'id'},
@@ -20,33 +16,40 @@ const columns = [
   { field: 'vaccine_type', headerName: 'Vaccine Type', width: 230 },
 ];
 
-let list = [];
-
-function addId(){
-  for (let index = 0; index < trafficTest.length; index++) {
-    trafficTest[index]["id"] = index;
+export default class DataBaseMongo extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {list: []}
   }
-  list = trafficTest;
-  console.log(list[0]);
-}
 
-export default function DataBaseMongo() {
-  addId();
-/*
-  const [list, setList] = useState([]);
-  useEffect(() =>{
-    getDatos()
-      .then((response)=>{
-        setList(response.data);
+  componentDidMount(){
+    this.timerID = setInterval( () => 
+      this.loaderData(), 
+      3000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  loaderData(){
+    datosAlmacenados()
+      .then((res) => {
+        this.setState({
+          list: res.data  
+        })
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Error de respuesta", error);
       });
-  }, [setList]);
-*/
-  return (
-    <div style={{ height: 400, width: '100%', container: {maxHeight: 440, }, }}>
-      <DataGrid rows={list} columns={columns} />
-    </div>
-  );
+  }
+
+  render(){
+    return (
+      <div style={{ height: 400, width: '100%', container: {maxHeight: 440, }, }}>
+        <DataGrid rows={this.state.list} columns={columns} />
+      </div>
+    );
+  }
 }

@@ -21,6 +21,8 @@ import Slide from '@material-ui/core/Slide';
 import DataCountry from '../../libs/data';
 import DataDialog from './DataDialog';
 
+import {getTopTen} from '../../services/redis';
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -50,7 +52,25 @@ const rounded = num => {
   }
 }
 
-export default function MapChart({ setTooltipContent, datos, fontColor, tipo }){
+function colorScale(min, max, entrada){
+  const color = scaleLinear()
+      .domain([min, max])
+      .range(["#f7b0a6", "#ff5233"]);
+
+  return color(entrada);
+}
+
+function AddIso(datos){
+  for (let index = 0; index < datos.length; index++) {
+      const d = DataCountry.find((s) => s.Name === datos[index]["location"]);
+      if(d !== undefined)
+          datos[index]["ISO3"] = d["ISO3"];
+      datos[index]["color"] = colorScale(datos[datos.length - 1]["cont"], datos[0]["cont"], datos[index]["cont"]);
+  }
+  return datos;
+}
+
+export default function MapChart({ setTooltipContent, fontColor, tipo }){
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [data, setData] = useState([]);
@@ -63,14 +83,21 @@ export default function MapChart({ setTooltipContent, datos, fontColor, tipo }){
   const handleClick = geo => () => {
     setOpen(true);
     setCountry(geo);
+    loaderData();
   };
 
+  const loaderData = () =>{
+    getTopTen()
+      .then((res) => {
+        setData(AddIso(res.data));
+      })
+      .catch((error) => {
+        console.log("Error en el servidor", error);
+      });
+  }
+
   useEffect(() => {
-    if(datos.length > 0){
-      setData(datos);
-    }else{
-      setData(DataCountry)
-    }
+    loaderData();
   }, []);
   
   return (
@@ -94,7 +121,7 @@ export default function MapChart({ setTooltipContent, datos, fontColor, tipo }){
                       fill={d ? d["color"] : fontColor}
                       onMouseEnter={() => {
                         const { NAME } = geo.properties;
-                        setTooltipContent(`${NAME} — ${rounded(d ? d["vacunados"] : 0)}`);
+                        setTooltipContent(`${NAME} — ${rounded(d ? d["cont"] : 0)}`);
                       }}
                       onMouseLeave={() => {
                         setTooltipContent("");

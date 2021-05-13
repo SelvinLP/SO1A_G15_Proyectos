@@ -122,7 +122,7 @@ function SwithcCase(props){
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -180,9 +180,9 @@ export default function MiniDrawer() {
           <Divider />
           <List>
             <Link className={classes.link} to="/">
-              <ListItem button key="Datos MongoDB">
+              <ListItem button key="Datos">
                 <ListItemIcon><SwithcCase value={0} /></ListItemIcon>
-                <ListItemText primary="Home" />
+                <ListItemText primary="Datos MongoDB" />
               </ListItem>
             </Link> 
             {['Top Vacunados', 'Vacunados por País', 'Generos', 'Ultimos 5 Vacunados', 'Edades'].map((text, index) => (

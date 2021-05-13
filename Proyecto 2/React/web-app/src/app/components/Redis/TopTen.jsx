@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useState} from "react";
 import ReactTooltip from "react-tooltip";
 import MapChartTop from '../MapChart/MapChartTop'
-import DataCountry from '../../libs/data';
-import { scaleLinear } from "d3-scale";
 
-function colorScale(min, max, entrada){
-    const color = scaleLinear()
-        .domain([min, max])
-        .range(["#ffcfc7", "#fc3312"]);
-
-    return color(entrada);
-}
-
-const top = [
+/*const top = [
     {"id": 1, "name": "China", "vacunados": 10000, },
     {"id": 2, "name": "Algeria", "vacunados": 9000, },
     {"id": 3, "name": "Ethiopia", "vacunados": 8000, },
@@ -26,36 +16,14 @@ const top = [
     {"id": 11, "name": "Uruguay", "vacunados": 900, },
     {"id": 12, "name": "Venezuela", "vacunados": 800, },
 ];
-
-function AddIso(){
-    let max = 0;
-    let min = 0;
-    max = top[0]["vacunados"]
-    for (let index = 0; index < top.length; index++) {
-        const d = DataCountry.find((s) => s.Name === top[index]["name"]);
-        if(d !== undefined)
-            top[index]["ISO3"] = d["ISO3"];
-        if(index === 9)
-            min = top[index]["vacunados"];
-    }
-    for (let index = 0; index < top.length; index++) {
-        if(index < 10){
-            top[index]["color"] = colorScale(min, max, top[index]["vacunados"]);
-        }else{
-            top[index]["color"] = "#17a14a";
-        }
-        
-    }
-    return top;
-}
+*/
 
 export default function TopTen(){
     const [content, setContent] = useState("");
-    const [data, setData] = useState(AddIso());
 
     return (
         <div>
-            <MapChartTop setTooltipContent={setContent} datos={data} tipo={1} />
+            <MapChartTop setTooltipContent={setContent} tipo={1} />
             <ReactTooltip>{content}</ReactTooltip>    
         </div>
     );
