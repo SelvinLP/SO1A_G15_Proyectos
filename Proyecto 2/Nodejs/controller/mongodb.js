@@ -14,7 +14,7 @@ const servicios = async (req = Request, res = Response) => {
             name: body.name,
             location: body.location,
             age: body.age,
-            vaccine_type: body.infectedtype,
+            vaccine_type: body.vaccine_type,
 	   gender:body.gender,
 	    tipo: body.tipo
         });  
