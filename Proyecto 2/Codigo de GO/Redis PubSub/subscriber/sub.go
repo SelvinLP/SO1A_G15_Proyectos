@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 
@@ -41,7 +42,7 @@ func pullMsgs() error {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(str)
+		//fmt.Println(str)
 		sendpost(str)
 		msg.Ack()
 	})
@@ -58,12 +59,29 @@ func main() {
 }
 
 func sendpost(value string) {
+	val2 := strings.Split(value, "}")[0]
+	//fmt.Println(val)
+	var sb1 strings.Builder
+	sb1.WriteString(string(val2))
+	sb1.WriteString(", \"tipo\":\"Pub Sub\" }")
+
+	requestBody := strings.NewReader(sb1.String())
+	//mongodb
+	_, err := http.Post("http://34.72.16.244:3000", "application/json; charset=UTF-8", requestBody)
+	if err == nil {
+		log.Printf("Enviado")
+	} else {
+		log.Printf("NO Enviado")
+	}
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	val := strings.Split(value, "}")[0]
 	//fmt.Println(val)
 	var sb strings.Builder
 	sb.WriteString(string(val))
 	sb.WriteString(", \"tipo\":\"Pub Sub\" },")
-
 	//REDIS
 	conn2, err := redis.Dial("tcp",
 		"redis-18733.c1.us-central1-2.gce.cloud.redislabs.com:18733",
@@ -76,4 +94,5 @@ func sendpost(value string) {
 	if _, err = conn2.Do("APPEND", "foo", sb.String()); err != nil {
 		log.Fatal(err)
 	}
+
 }
