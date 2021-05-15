@@ -13,7 +13,7 @@ resources:
       entryPoint: http
       function: top-ten-dev-second
       sourceArchiveUrl: >-
-        gs://sls-top-ten-dev-1620800747165/serverless/top-ten/dev/1620844392005-2021-05-12T18:33:12.005Z/top-ten.zip
+        gs://sls-top-ten-dev-1620800747165/serverless/top-ten/dev/1620860471252-2021-05-12T23:01:11.252Z/top-ten.zip
       labels: {}
       httpsTrigger:
         url: path

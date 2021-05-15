@@ -2,10 +2,14 @@
 
 exports.http = (request, response) => {
 
+try{
+ response.set('Access-Control-Allow-Origin','*');
+ }catch(error){
+ }
  
-   //--------------------------------------------------
+ //--------------------------------------------------
 
-
+    const top = [];
 const redis = require('redis');
 const client = redis.createClient({
     host: 'redis-18733.c1.us-central1-2.gce.cloud.redislabs.com',
@@ -19,7 +23,7 @@ client.on('error', err => {
 
 client.get('foo', (err, reply) => {
         if (err) throw err;
-        try{
+       
         reply = reply.substring(0, reply.length - 1);
         var results = JSON.parse('['+reply+']'); 
         //---------------------consulta top1p paises
@@ -67,44 +71,48 @@ results.forEach(category => {
         
         // haciendo top10
          // haciendo top10
-         const top = [];
+         
          var a =0;
          i=0;
-         if(filteredCategories.length>=10){
+         
   for (i = filteredCategories.length-1; i >= 0; i--) { 
-  if(a!=10){
-  top[a]= filteredCategories[i];
-  a++; 
-  } 
-}
-         }else{
-         i=0;
-         for (i = filteredCategories.length-1; i >= 0; i--) { 
-  
+ 
   top[a]= filteredCategories[i];
   a++; 
   
+   
+ 
 }
         
-         }
-           
-        
-        
-       response.status(200).send(top);
+ try{
+     response.status(200).send(top);
        console.log(top);
+        
+       
+       
        // console.log(results);
         }catch(error){
-       response.status(200).send([]);      
+     
+        response.status(200).send([]);
+       
+          
         }
+       
+       
         
     });
+    client.quit();
+    
     
 //------------------------------------------------------
+   
 
 };
 
 exports.event = (event, callback) => {
   callback();
+  
 };
 
     
+
