@@ -1,9 +1,13 @@
 'use strict';
 
 exports.http = (request, response) => {
-  //--------------------------------------------------
 
+//--------------------------------------------------
 
+try{
+ response.set('Access-Control-Allow-Origin','*');
+ }catch(error){
+ }
 const redis = require('redis');
 const client = redis.createClient({
     host: 'redis-18733.c1.us-central1-2.gce.cloud.redislabs.com',
@@ -15,13 +19,11 @@ client.on('error', err => {
     console.log('Error ' + err);
 });
 
-client.on('error', err => {
-    console.log('Error ' + err);
-});
+
 
 client.get('foo', (err, reply) => {
         if (err) throw err;
-        try{
+       
         reply = reply.substring(0, reply.length - 1);
         var results = JSON.parse('['+reply+']'); 
         //---------------------consulta top1p paises
@@ -103,7 +105,7 @@ noventa_cien=0;
         }else if(category.age>=70&&category.age<80){
         filteredCategories[i].setenta_ochenta=filteredCategories[i].setenta_ochenta+1;
         }else if(category.age>=80&&category.age<90){
-        filteredCategories[i].ochenta_noventa=filteredCategories[i].ochenta_novent+1;
+        filteredCategories[i].ochenta_noventa=filteredCategories[i].ochenta_noventa+1;
         }else if(category.age>=90&&category.age<100){
         filteredCategories[i].noventa_cien=filteredCategories[i].noventa_cien+1;
         }
@@ -119,7 +121,7 @@ noventa_cien=0;
 });
 
                  
-        
+        try{ 
        response.status(200).send(filteredCategories);
        console.log(filteredCategories);
        // console.log(results);
@@ -128,14 +130,18 @@ noventa_cien=0;
         }
         
     });
+    client.quit();
     
 //------------------------------------------------------
+
 };
 
 exports.event = (event, callback) => {
+
   callback();
+ 
 };
 
 
 
-
+  

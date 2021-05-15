@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	address = "servidor:9000"
+	address = ":9000"
 )
 
 func failOnError(err error, msg string) {

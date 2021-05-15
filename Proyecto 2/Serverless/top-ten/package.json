@@ -12,6 +12,7 @@
     "serverless-google-cloudfunctions": "*"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "redis": "^3.1.2"
   }
 }

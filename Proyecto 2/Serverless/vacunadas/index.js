@@ -3,7 +3,10 @@
 exports.http = (request, response) => {
  
 //--------------------------------------------------
-
+try{
+ response.set('Access-Control-Allow-Origin','*');
+ }catch(error){
+ }
 
 const redis = require('redis');
 const client = redis.createClient({
@@ -35,6 +38,7 @@ results.forEach(category => {
 
     if (!filteredCategories.find(cat => cat.location == category.location)) {
         const location = category.location ;
+     
         cont = 1;
         filteredCategories.push({location, cont});
          
@@ -61,6 +65,8 @@ results.forEach(category => {
         }
         
     });
+    
+     client.quit();
     
 //------------------------------------------------------
 };

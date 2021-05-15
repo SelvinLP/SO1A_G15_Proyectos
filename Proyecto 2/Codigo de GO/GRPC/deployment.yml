@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: p2sopes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: p2sopes
+  template:
+    metadata:
+      labels:
+        app: p2sopes
+    spec:
+      containers:
+      - name: kafka-producer
+        image: randycan/kafka-producer
+        ports:
+        - containersPort: 8080
+      - name: kafka-producer
+        image: randycan/kafka-consumer

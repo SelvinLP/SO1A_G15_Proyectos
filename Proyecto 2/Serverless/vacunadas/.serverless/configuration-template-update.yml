@@ -13,7 +13,7 @@ resources:
       entryPoint: http
       function: vacunadas-dev-vacunadas
       sourceArchiveUrl: >-
-        gs://sls-vacunadas-dev-1620801774407/serverless/vacunadas/dev/1620844614441-2021-05-12T18:36:54.441Z/vacunadas.zip
+        gs://sls-vacunadas-dev-1620801774407/serverless/vacunadas/dev/1620862859153-2021-05-12T23:40:59.153Z/vacunadas.zip
       labels: {}
       httpsTrigger:
         url: path
