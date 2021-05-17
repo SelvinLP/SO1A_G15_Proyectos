@@ -6,6 +6,6 @@ spec:
   selector:
     app: p2sopes-pubsub
   ports:
-    - port: 3001
-      targetPort: 3001
+    - port: 8080
+      targetPort: 8080
   type: LoadBalancer

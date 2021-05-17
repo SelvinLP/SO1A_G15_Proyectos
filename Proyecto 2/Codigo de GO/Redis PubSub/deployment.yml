@@ -16,6 +16,6 @@ spec:
       - name: pubsub-client
         image: randycan/pubsub-client
         ports:
-        - containerPort: 3001
+        - containerPort: 8080
       - name: pubsub-server
         image: randycan/pubsub-server
