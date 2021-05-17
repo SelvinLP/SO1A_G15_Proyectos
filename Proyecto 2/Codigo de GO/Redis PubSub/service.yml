@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: p2sopes-services-pubsub
+spec:
+  selector:
+    app: p2sopes-pubsub
+  ports:
+    - port: 3001
+      targetPort: 3001
+  type: LoadBalancer
