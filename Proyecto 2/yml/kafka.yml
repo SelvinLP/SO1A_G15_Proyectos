@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: p2sopes
+  namespace: project
+  labels:
+    app: p2sopes
 spec:
   replicas: 1
   selector:
@@ -19,3 +22,16 @@ spec:
         - containersPort: 8080
       - name: kafka-producer
         image: randycan/kafka-consumer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: p2sopes-services
+  namespace: project
+spec:
+  selector:
+    app: p2sopes
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
