@@ -13,9 +13,9 @@ spec:
         app: p2sopes-pubsub
     spec:
       containers:
+      - name: pubsub-server
+        image: randycan/pubsub-server
       - name: pubsub-client
         image: randycan/pubsub-client
         ports:
-        - containerPort: 3001
-      - name: pubsub-server
-        image: randycan/pubsub-server
+        - containerPort: 8080
