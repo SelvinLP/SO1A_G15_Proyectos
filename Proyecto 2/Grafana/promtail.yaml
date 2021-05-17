@@ -1,0 +1,6 @@
+loki:
+    servicePort: 443
+    serviceScheme: https
+    serviceName: logs-prod-us-central1.grafana.net
+    user: 54597
+    password: eyJrIjoiNmRmNjUwNzViZDVmYzBiMTIzOTc5Y2UyNWI4YTMwMWY3MTA3MTI0OCIsIm4iOiJzb3BlczEiLCJpZCI6NDk3MzE0fQ==
