@@ -16,6 +16,6 @@ spec:
       - name: kafka-producer
         image: randycan/kafka-producer
         ports:
-        - containersPort: 8080
-      - name: kafka-producer
+        - containerPort: 8080
+      - name: kafka-consumer
         image: randycan/kafka-consumer
