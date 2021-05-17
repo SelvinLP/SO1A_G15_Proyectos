@@ -14,6 +14,7 @@ const columns = [
     width: 90,
   },
   { field: 'vaccine_type', headerName: 'Vaccine Type', width: 230 },
+  { field: 'tipo', headerName: 'Way', width: 150 },
 ];
 
 export default class DataBaseMongo extends React.Component {
