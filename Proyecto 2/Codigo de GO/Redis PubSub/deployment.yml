@@ -9,6 +9,8 @@ spec:
       app: p2sopes-pubsub
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: p2sopes-pubsub
     spec:
