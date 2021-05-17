@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: p2sopes-services
+  name: p2sopes-services-kafka
 spec:
   selector:
-    app: p2sopes
+    app: p2sopes-kafka
   ports:
     - port: 8080
       targetPort: 8080

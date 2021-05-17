@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: p2sopes
+  name: p2sopes-kafka
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: p2sopes
+      app: p2sopes-kafka
   template:
     metadata:
       labels:
-        app: p2sopes
+        app: p2sopes-kafka
     spec:
       containers:
       - name: kafka-producer
