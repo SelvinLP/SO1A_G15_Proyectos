@@ -8,3 +8,7 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
+<<<<<<< HEAD
+=======
+  type: LoadBalancer
+>>>>>>> a3c3be7dc48c5895048c9b202f08364ca55fb5a5

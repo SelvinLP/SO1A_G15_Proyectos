@@ -6,4 +6,4 @@ COPY . .
 
 RUN go mod download
 
-CMD ["go","run","Sub.go"]
+CMD ["go","run","sub.go"]

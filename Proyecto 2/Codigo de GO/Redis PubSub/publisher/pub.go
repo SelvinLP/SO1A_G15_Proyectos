@@ -105,9 +105,9 @@ func http_server(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	http.HandleFunc("/", http_server)
-	print("Servidor levantado en el puerto 3001")
+	print("Servidor levantado en el puerto 8080")
 	//Si hay error se apaga
-	if err := http.ListenAndServe(":3001", nil); err != nil {
+	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
 }
