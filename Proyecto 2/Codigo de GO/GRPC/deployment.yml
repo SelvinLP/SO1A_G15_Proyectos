@@ -16,6 +16,6 @@ spec:
       - name: grpc-client
         image: randycan/grpc-client
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
       - name: grpc-server
         image: randycan/grpc-server
