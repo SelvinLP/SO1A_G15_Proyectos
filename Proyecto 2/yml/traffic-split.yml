@@ -1,16 +1,16 @@
 apiVersion: split.smi-spec.io/v1alpha1
 kind: TrafficSplit
 metadata:
-  name: error-split
+  name: service-split
   namespace: project
 spec:
-  service: p2sopes-services
+  service: p2sopes-services-kafka
   backends:
-  - service: p2sopes-services # kafka
+  - service: p2sopes-services-kafka # kafka
     weight: 333m
   - service: p2sopes-services-grpc
     weight: 333m
   - service: p2sopes-services-pubsub
     weight: 333m
-  - service: error-injector
+  - service: error-injector-srv
     weight: 1m

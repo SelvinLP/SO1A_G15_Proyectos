@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: p2sopes-grpc
+  namespace: project
+  labels:
+    app: p2sopes-grpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: p2sopes-grpc
+  template:
+    metadata:
+      labels:
+        app: p2sopes-grpc
+    spec:
+      containers:
+      - name: grpc-client
+        image: randycan/grpc-client
+        ports:
+        - containerPort: 8080
+      - name: grpc-server
+        image: randycan/grpc-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: p2sopes-services-grpc
+  namespace: project
+spec:
+  selector:
+    app: p2sopes-grpc
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
