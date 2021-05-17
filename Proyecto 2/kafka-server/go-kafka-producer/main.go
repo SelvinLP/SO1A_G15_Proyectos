@@ -49,7 +49,7 @@ func homePage(w http.ResponseWriter, r *http.Request){
 
 func main() {
 	// get kafka writer using environment variables.
-	kafkaURL := "localhost:9092"//my-cluster-kafka-bootstrap
+	kafkaURL := "my-cluster-kafka-bootstrap:9092"//my-cluster-kafka-bootstrap
 	topic := "prueba"
 	kafkaWriter := getKafkaWriter(kafkaURL, topic)
 

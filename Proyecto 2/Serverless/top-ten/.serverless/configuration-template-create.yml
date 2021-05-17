@@ -1,0 +1,5 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-top-ten-dev-1620800747165
+    properties:
+      location: us-central1

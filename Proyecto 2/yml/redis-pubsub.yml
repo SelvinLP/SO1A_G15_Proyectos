@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: p2sopes-pubsub
+  namespace: project
+  labels:
+    app: p2sopes-pubsub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: p2sopes-pubsub
+  template:
+    metadata:
+      labels:
+        app: p2sopes-pubsub
+    spec:
+      containers:
+      - name: pubsub-client
+        image: randycan/pubsub-client
+        ports:
+        - containerPort: 8080
+      - name: pubsub-server
+        image: randycan/pubsub-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: p2sopes-services-pubsub
+  namespace: project
+spec:
+  selector:
+    app: p2sopes-pubsub
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP

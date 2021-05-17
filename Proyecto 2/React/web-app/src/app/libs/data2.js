@@ -1,4 +1,4 @@
-[{"name":"Raymond Bulloch","location":"Brazil","gender":"Genderfluid","age":39,"vaccine_type":"Y-Solowarm"},
+const trafficTest = [{"name":"Raymond Bulloch","location":"Brazil","gender":"Genderfluid","age":39,"vaccine_type":"Y-Solowarm"},
 {"name":"Moise Yelland","location":"Indonesia","gender":"Bigender","age":23,"vaccine_type":"Hatity"},
 {"name":"Erina Peaurt","location":"China","gender":"Male","age":39,"vaccine_type":"Zamit"},
 {"name":"Terrance Esselen","location":"Nigeria","gender":"Male","age":50,"vaccine_type":"Ventosanzap"},
@@ -997,4 +997,6 @@
 {"name":"Jessey Khomin","location":"China","gender":"Genderfluid","age":23,"vaccine_type":"Solarbreeze"},
 {"name":"Phillip Szubert","location":"Indonesia","gender":"Agender","age":16,"vaccine_type":"Y-find"},
 {"name":"Krissie Overnell","location":"Mexico","gender":"Female","age":80,"vaccine_type":"Tin"},
-{"name":"Tommie Kaine","location":"Macedonia","gender":"Genderfluid","age":25,"vaccine_type":"Regrant"}]
+{"name":"Tommie Kaine","location":"Macedonia","gender":"Genderfluid","age":25,"vaccine_type":"Regrant"}];
+
+export default trafficTest;
