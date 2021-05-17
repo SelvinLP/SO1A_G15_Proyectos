@@ -1,0 +1,23 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+ annotations:
+  kubernetes.io/ingress.class: nginx
+  nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+      grpc_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+  nginx.ingress.kubernetes.io/ssl-redirect: "false"
+ name: sopes1p2-ingress
+ namespace: project
+spec:
+ rules:
+  - host: traffyc.sopes1g15.tk
+    http:
+      paths:
+        - backend:
+            serviceName: p2sopes-services
+            servicePort: 8080
+
+            # p2sopes-services 8080
+            # p2sopes-services-grpc 8080
+            # p2sopes-pubsub 8080
